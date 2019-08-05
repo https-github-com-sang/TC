@@ -14,6 +14,7 @@ import sang.thai.tran.travelcompanion.retrofit.BaseObserver
 import sang.thai.tran.travelcompanion.retrofit.HttpRetrofitClientBase
 import sang.thai.tran.travelcompanion.utils.AppConstant.API_LOGIN
 import sang.thai.tran.travelcompanion.utils.AppConstant.SUCCESS_CODE
+import sang.thai.tran.travelcompanion.utils.AppUtils
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
 import sang.thai.tran.travelcompanion.utils.DialogUtils
 import java.util.*
@@ -92,8 +93,8 @@ class LoginFragment : BaseFragment() {
 
             // test
             if (BuildConfig.DEBUG && TextUtils.isEmpty(et_phone!!.text.toString())) {
-                map["email"] = "a@a.vn"
-                map["password"] = "a"
+                map["email"] = "lukatrolai@gmail.com"
+                map["password"] = "A@123456"
             }
             HttpRetrofitClientBase.getInstance().loginFunction(API_LOGIN, map, object : BaseObserver<Response>(true) {
                 override fun onSuccess(result: Response, response: String) {
@@ -120,9 +121,8 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun isEmailValid(email: String): Boolean {
-        //TODO: Replace this with your own logic
-        //        return email.contains("@");
-        return email.length > 4
+
+        return email.length > 4 && AppUtils.isEmailValid(email)
     }
 
 }

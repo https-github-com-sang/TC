@@ -1,8 +1,17 @@
 package sang.thai.tran.travelcompanion.model;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.SerializedName;
 
-public class UserInfo extends BaseModel{
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import sang.thai.tran.travelcompanion.utils.Log;
+
+public class UserInfo extends BaseModel {
 
     @SerializedName("Code")
     private String Code;
@@ -50,6 +59,21 @@ public class UserInfo extends BaseModel{
     private String Identify_No;
 
     public String getBirthday() {
+        Log.d("Sang","getBirthday: " + birthday);
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+        SimpleDateFormat dtYYYY = new SimpleDateFormat("yyyy", Locale.US);
+        if (!TextUtils.isEmpty(birthday) && birthday.contains(":")) {
+            try {
+                Date d = dt.parse(birthday);
+                if (d != null) {
+                    return dtYYYY.format(d);
+                }
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return birthday;
+            }
+        }
         return birthday;
     }
 
@@ -189,6 +213,17 @@ public class UserInfo extends BaseModel{
     public void setLast_Name(String last_Name) {
         Last_Name = last_Name;
     }
+
+    public FlightJobModel getFlightJobModel() {
+        return flightJobModel;
+    }
+
+    public void setFlightJobModel(FlightJobModel flightJobModel) {
+        this.flightJobModel = flightJobModel;
+    }
+
+    private FlightJobModel flightJobModel;
+
     @Override
     public String toString() {
         return "UserInfo [Code= " + Code + ", First_Name= " + First_Name +

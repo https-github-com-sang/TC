@@ -2,7 +2,7 @@ package sang.thai.tran.travelcompanion.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RegisterModel extends BaseModel{
+public class RegisterModel extends Assistance{
 
     //API_UPDATE_ON_FLIGHT
     @SerializedName("id")
@@ -60,6 +60,39 @@ public class RegisterModel extends BaseModel{
 
     @SerializedName("WellTrainedObject")
     private String wellTrainedObject;
+
+    @SerializedName("Type")
+    private String type;
+
+    @SerializedName("Status")
+    private String status;
+
+    @SerializedName("Code")
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getId() {
         return id;

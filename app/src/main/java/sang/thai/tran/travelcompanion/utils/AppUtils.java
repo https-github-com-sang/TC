@@ -13,6 +13,7 @@ import android.text.Selection;
 import android.util.Base64;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -37,10 +38,41 @@ public class AppUtils {
         return null;
     }
 
+    public static int getColor(Context context, int id) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return context.getColor(id);
+        } else {
+            if (context.getResources() != null) {
+                return ContextCompat.getColor(context, id);
+            } else {
+                return -1;
+            }
+        }
+    }
 //    public static int getPixelValue(Context context, int dp) {
 //        final float scale = context.getResources().getDisplayMetrics().density;
 //        return (int) (dp * scale + 0.5f);
 //    }
+
+    /**
+     * get called from method
+     *
+     * @return
+     */
+    public static String calledFrom() {
+        StackTraceElement[] steArray = Thread.currentThread().getStackTrace();
+        if (steArray.length <= 4) {
+            return "";
+        }
+        StackTraceElement ste = steArray[4];
+        return ste.getMethodName() +        // method name
+                "(" +
+                ste.getFileName() +        // file name
+                ":" +
+                ste.getLineNumber() +    // line number
+                ") ──> ";
+    }
+
 
     public static boolean isEmailValid(String email) {
         boolean isValid = false;
@@ -61,7 +93,8 @@ public class AppUtils {
         }
         boolean isValid = false;
 
-        String expression = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+//        String expression = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        String expression = "^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{6,}$";
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
         if (matcher.matches()) {
@@ -70,13 +103,44 @@ public class AppUtils {
         return isValid;
     }
 
+    public static List<String> isPassValid(String passwordhere, String confirmhere) {
+
+        List<String> errorList = new ArrayList<String>();
+
+        Pattern specailCharPatten = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+        Pattern UpperCasePatten = Pattern.compile("[A-Z ]");
+        Pattern lowerCasePatten = Pattern.compile("[a-z ]");
+        Pattern digitCasePatten = Pattern.compile("[0-9 ]");
+
+//        if (!passwordhere.equals(confirmhere)) {
+//            errorList.add("password and confirm password does not match");
+//        }
+        if (passwordhere.length() <= 8) {
+            errorList.add("Password lenght must have alleast 8 character !!");
+        }
+        if (!specailCharPatten.matcher(passwordhere).find()) {
+            errorList.add("Password must have atleast one specail character !!");
+        }
+        if (!UpperCasePatten.matcher(passwordhere).find()) {
+            errorList.add("Password must have atleast one uppercase character !!");
+        }
+        if (!lowerCasePatten.matcher(passwordhere).find()) {
+            errorList.add("Password must have atleast one lowercase character !!");
+        }
+        if (!digitCasePatten.matcher(passwordhere).find()) {
+            errorList.add("Password must have atleast one digit character !!");
+        }
+
+        return errorList;
+
+    }
+
     public static boolean isPhoneValid(String email) {
         if (BuildConfig.DEBUG) {
             return true;
         }
         boolean isValid = false;
-        if (email.length() == 10) {
-            // For Viet Nam
+        if (email.length() >= 9) {
             isValid = true;
         }
         return isValid;

@@ -3,6 +3,8 @@ package sang.thai.tran.travelcompanion.utils;
 import sang.thai.tran.travelcompanion.model.RegisterModel;
 import sang.thai.tran.travelcompanion.model.UserInfo;
 
+import static sang.thai.tran.travelcompanion.utils.AppUtils.calledFrom;
+
 public class ApplicationSingleton {
 
     private static ApplicationSingleton mInstance;
@@ -30,10 +32,21 @@ public class ApplicationSingleton {
     }
 
     public void setToken(String token) {
+        Log.d("Sang", "setToken : " + token + " calledFrom: " + calledFrom());
         Token = token;
     }
 
     private String Token;
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    private String userType;
 
     public void reset() {
         setToken(null);
