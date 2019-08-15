@@ -4,33 +4,43 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.FragmentTransaction
-import androidx.appcompat.app.AppCompatActivity
 import android.view.inputmethod.InputMethodManager
-import butterknife.ButterKnife
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import butterknife.OnClick
+import kotlinx.android.synthetic.main.layout_action_bar.*
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.fragment.BaseFragment
 import sang.thai.tran.travelcompanion.utils.LocaleHelper
-import java.util.*
+import sang.thai.tran.travelcompanion.utils.PreferenceHelper
 
 open class BaseActivity : AppCompatActivity() {
 
     private var mCurrentFragment: BaseFragment? = null
 
-    private var myLocale: Locale? = null
-
     internal open val getChildClass: Class<*>
         get() = BaseActivity::class.java
 
+    internal open val layoutId: Int
+        get() = R.layout.activity_login
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        ButterKnife.bind(this)
+        setContentView(layoutId)
+//        ButterKnife.bind(this)
+        iv_en_flag.setOnClickListener {
+            setLocale("en") }
+        iv_vn_flag.setOnClickListener {
+            setLocale("vi")
+        }
+        tv_log_out.setOnClickListener {
+            startActivity(Intent(this,  LoginActivity::class.java))
+            finish()
+        }
     }
 
     override fun attachBaseContext(newBase: Context) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase))
+        super.attachBaseContext(LocaleHelper.onAttach(newBase, PreferenceHelper.getInstance(newBase).getLanguage("vi")))
     }
 
     protected fun replaceFragment(containerId: Int, fragment: BaseFragment?) {
@@ -92,24 +102,33 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     private fun setLocale(lang: String) {
-        myLocale = Locale(lang)
-        Locale.setDefault(myLocale)
-        val res = resources
-        val dm = res.displayMetrics
-        val conf = res.configuration
-        conf.locale = myLocale
-        res.updateConfiguration(conf, dm)
+//        myLocale = Locale(lang)
+//        Locale.setDefault(myLocale)
+//        val res = resources
+//        val dm = res.displayMetrics
+//        val conf = res.configuration
+//        conf.locale = myLocale
+//        res.updateConfiguration(conf, dm)
+//
+//        // https://github.com/akexorcist/Android-LocalizationActivity
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            //            recreate();
+//            //            finish();
+//            //            EventBus.getDefault().post(new MessageEvent());
+//        }
+        LocaleHelper.setLocale(this, lang)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            recreate();
+//            //            EventBus.getDefault().post(new MessageEvent());
+        } else {
 
+        }
         val refresh = Intent(this, getChildClass)
         refresh.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(refresh)
         finish()
-        // https://github.com/akexorcist/Android-LocalizationActivity
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            //            recreate();
-            //            finish();
-            //            EventBus.getDefault().post(new MessageEvent());
-        }
+//        finish();
+//        recreate()
     }
 }
