@@ -43,11 +43,15 @@ open class BaseActivity : AppCompatActivity() {
         super.attachBaseContext(LocaleHelper.onAttach(newBase, PreferenceHelper.getInstance(newBase).getLanguage("vi")))
     }
 
-    protected fun replaceFragment(containerId: Int, fragment: BaseFragment?) {
+    fun replaceFragment(containerId: Int, fragment: BaseFragment?) {
         hideSoftKeyboard()
         val fragmentManager = supportFragmentManager
         val ft = fragmentManager.beginTransaction()
         if (fragment != null) {
+            ft.setCustomAnimations(android.R.anim.slide_in_left,
+                    android.R.anim.slide_out_right,
+                    android.R.anim.slide_in_left,
+                    android.R.anim.slide_out_right)
             ft.replace(containerId, fragment, fragment.javaClass.simpleName)
             ft.addToBackStack(fragment.javaClass.simpleName)
             mCurrentFragment = fragment

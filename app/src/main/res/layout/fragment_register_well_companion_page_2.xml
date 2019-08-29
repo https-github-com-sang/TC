@@ -27,71 +27,44 @@
             <TextView
                 style="@style/Info_Title_Well_Companion"
                 android:background="@drawable/bg_green_border_gray_filled_rounded_corner"
-                android:text="@string/label_professional_qualification_title"/>
+                android:text="@string/label_register_well_trained_companion"/>
 
             <TextView
-                android:id="@+id/tv_professional_qualification"
+                android:id="@+id/tv_register_for"
                 android:layout_marginTop="@dimen/_5sdp"
                 style="@style/Tv_Package_service"
-                android:text="@string/label_professional_qualification"/>
+                android:text="@string/label_for"/>
 
             <TextView
-                android:id="@+id/tv_specialized"
+                android:id="@+id/tv_register_free_time"
                 android:layout_marginTop="@dimen/_5sdp"
                 style="@style/Tv_Package_service"
-                android:text="@string/label_specialized"/>
+                android:text="@string/label_free_time_in_week"/>
 
             <TextView
-                android:id="@+id/tv_foreign_language"
+                android:id="@+id/tv_register_start_time"
                 android:layout_marginTop="@dimen/_5sdp"
                 style="@style/Tv_Package_service"
-                android:text="@string/label_foreign_language"/>
+                android:text="@string/label_start_time"/>
 
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_register_support_place"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_width="match_parent"
-                android:background="@drawable/bg_green_border_white_filled_rounded_corner"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_10sdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/_11sdp"
-                    android:text="@string/label_communication_skills"/>
+                style="@style/Tv_Package_service"
+                android:text="@string/label_support_place"/>
 
-                <CheckBox
-                    android:id="@+id/cb_yes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button = "?android:attr/listChoiceIndicatorSingle"
-                    android:checked="false"/>
+            <!-- Title -->
+            <TextView
+                style="@style/Info_Title_Well_Companion"
+                android:background="@drawable/bg_green_border_gray_filled_rounded_corner"
+                android:text="@string/label_work_experience"/>
 
-                <TextView
-                    android:text="Tốt"
-                    android:gravity="center_vertical|start"
-                    android:layout_width="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_current_job"
+                android:layout_marginTop="@dimen/_5sdp"
+                style="@style/Tv_Package_service"
+                android:text="@string/label_current_job"/>
 
-                <CheckBox
-                    android:id="@+id/cb_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button = "?android:attr/listChoiceIndicatorSingle"
-                    android:checked="false"/>
-
-                <TextView
-                    android:text="Trung Bình"
-                    android:layout_width="wrap_content"
-                    android:gravity="center_vertical|start"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

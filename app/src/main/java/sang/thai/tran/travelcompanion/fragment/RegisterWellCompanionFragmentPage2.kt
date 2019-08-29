@@ -7,36 +7,28 @@ import kotlinx.android.synthetic.main.fragment_register_flight.*
 import kotlinx.android.synthetic.main.fragment_register_flight.email_sign_in_button
 import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
 import kotlinx.android.synthetic.main.fragment_register_well_companion.*
+import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.*
+import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.btn_back
+import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.btn_next
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.LoginActivity
 
-class RegisterWellCompanionFragment : BaseFragment() {
+class RegisterWellCompanionFragmentPage2 : BaseFragment() {
 
     override fun layoutId(): Int {
-        return R.layout.fragment_register_well_companion
+        return R.layout.fragment_register_well_companion_page_2
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         btn_next.setOnClickListener {
-//            openDepartureDate()
-            (activity as LoginActivity).replaceFragment(R.id.fl_content, RegisterWellCompanionFragmentPage2())
+            openDepartureDate()
         }
 
         btn_back.setOnClickListener {
             //            openDepartureDate()
             (activity as LoginActivity).onBackPressed()
         }
-
-//        tv_register_service_more?.requestFocus()
-//        tv_register_service_more?.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-//            if (hasFocus) {
-//                registerObject()
-//            }
-//            tv_register_service_more?.clearFocus()
-//        }
-//        tv_register_service_more.setOnClickListener { registerObject() }
-
     }
 
     private fun registerObject() {
@@ -51,8 +43,8 @@ class RegisterWellCompanionFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(): RegisterWellCompanionFragment {
-            return RegisterWellCompanionFragment()
+        fun newInstance(): RegisterWellCompanionFragmentPage2 {
+            return RegisterWellCompanionFragmentPage2()
         }
     }
 }

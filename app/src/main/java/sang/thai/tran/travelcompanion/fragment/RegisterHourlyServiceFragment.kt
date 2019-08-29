@@ -64,7 +64,7 @@ class RegisterHourlyServiceFragment : BaseFragment() {
                 tv_register_service?.clearFocus()
             }
         }
-        tv_register_service_more.setOnClickListener { registerService() }
+        tv_register_service.setOnClickListener { registerService() }
 
         email_sign_in_button.setOnClickListener {
             registerApi()

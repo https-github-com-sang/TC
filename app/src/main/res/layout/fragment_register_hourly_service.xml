@@ -39,7 +39,7 @@
                 android:id="@+id/tv_register_service"
                 android:layout_marginTop="@dimen/_5sdp"
                 style="@style/Tv_Package_service"
-                android:text="@string/label_for"/>
+                android:text="@string/label_register_service_package"/>
 
             <sang.thai.tran.travelcompanion.view.EditTextViewLayout
                 android:id="@+id/et_departure_date"

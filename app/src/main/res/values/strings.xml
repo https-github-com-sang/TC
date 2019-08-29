@@ -159,7 +159,7 @@
 
     <string name="label_destination_place">Destination: </string>
 
-    <string name="label_for">Đối tượng: </string>
+    <string name="label_for">For: </string>
 
     <string-array name="hourly_service_pkg">
         <item>Introduce clinics / medical centers</item><!--0-->
@@ -239,5 +239,15 @@ Email: tuyendung.travelwest@gmail.com</string>
     <string name="label_logout">Logout</string>
     <string name="label_work">Work</string>
     <string name="label_profile">Profile</string>
+    <string name="label_free_time_in_week">Free time:</string>
+    <string name="label_start_time">Start time:</string>
+    <string name="label_support_place">Location assistance: </string>
+    <string name="label_work_experience">Work experience</string>
+    <string name="label_current_job">Current job: </string>
+    <string name="label_professional_qualification_title">Professional qualification</string>
+    <string name="label_professional_qualification">Professional qualification:</string>
+    <string name="label_specialized">Specialized:</string>
+    <string name="label_foreign_language">Foreign language:</string>
+    <string name="label_communication_skills">Communication skill: </string>
 
 </resources>
