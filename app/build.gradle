@@ -38,7 +38,10 @@ android {
     }
     flavorDimensions "version"
     productFlavors {
+        def DOMAIN_FIELD = "DOMAIN_FIELD"
+        def DOMAIN_URL = "DOMAIN_URL"
         t_c {
+            buildConfigField "String", DOMAIN_URL, "\"http://donghanhchuyendi.com\""
             resValue "string", "app_name", "Travel Companion"
             dimension "version"
             applicationId 'sang.thai.tran.travelcompanion'
@@ -54,6 +57,7 @@ android {
             }
         }
         g_t_n {
+            buildConfigField "String", DOMAIN_URL, "\"http://giuptoinhe.com\""
             resValue "string", "app_name", "GTN"
             dimension "version"
             applicationId 'sang.thai.tran.gtn'

@@ -33,7 +33,7 @@ class HttpRetrofitClientBase {
     private var retrofit: Retrofit? = null
 
     val baseUrl: String
-        get() = "http://assistant.uniquetour.biz/"
+        get() = BuildConfig.DOMAIN_URL
 
     private fun initialize(url: String): Retrofit {
         val interceptor = HttpLoggingInterceptor()
