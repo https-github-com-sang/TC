@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.fragment_register_flight.email_sign_in_but
 import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
 import kotlinx.android.synthetic.main.fragment_register_well_companion.*
 import sang.thai.tran.travelcompanion.R
+import sang.thai.tran.travelcompanion.activity.BaseActivity
 import sang.thai.tran.travelcompanion.activity.LoginActivity
 
 class RegisterWellCompanionFragment : BaseFragment() {
@@ -20,12 +21,12 @@ class RegisterWellCompanionFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         btn_next.setOnClickListener {
 //            openDepartureDate()
-            (activity as LoginActivity).replaceFragment(R.id.fl_content, RegisterWellCompanionFragmentPage2())
+            (activity as BaseActivity).replaceFragment(R.id.fl_content, RegisterWellCompanionFragmentPage2())
         }
 
         btn_back.setOnClickListener {
             //            openDepartureDate()
-            (activity as LoginActivity).onBackPressed()
+            (activity as BaseActivity).onBackPressed()
         }
 
 //        tv_register_service_more?.requestFocus()

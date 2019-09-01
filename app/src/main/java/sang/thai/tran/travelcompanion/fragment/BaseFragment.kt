@@ -14,6 +14,7 @@ import com.nj.imagepicker.ImagePicker
 import com.nj.imagepicker.listener.ImageResultListener
 import com.nj.imagepicker.utils.DialogConfiguration
 import kotlinx.android.synthetic.main.fragment_register_guide.*
+import sang.thai.tran.travelcompanion.BuildConfig
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.MainActivity
 import sang.thai.tran.travelcompanion.model.RegisterModel
@@ -94,6 +95,9 @@ open class BaseFragment : Fragment() {
                 COMPANION_GUIDE -> child = "1"
                 WELL_TRAINED_COMPANION -> child = "2"
             }
+        }
+        if (BuildConfig.APPLICATION_ID.equals("sang.thai.tran.gtn")) {
+            child = "2"
         }
         ApplicationSingleton.getInstance().userType = parent + child
         MainActivity.startMainActivity(activity, parent + child)

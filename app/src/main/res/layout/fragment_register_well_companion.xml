@@ -32,19 +32,19 @@
             <TextView
                 android:id="@+id/tv_professional_qualification"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/Tv_Package_service"
+                style="@style/Tv_Package_service_drop_down"
                 android:text="@string/label_professional_qualification"/>
 
             <TextView
                 android:id="@+id/tv_specialized"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/Tv_Package_service"
+                style="@style/Tv_Package_service_drop_down"
                 android:text="@string/label_specialized"/>
 
             <TextView
                 android:id="@+id/tv_foreign_language"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/Tv_Package_service"
+                style="@style/Tv_Package_service_drop_down"
                 android:text="@string/label_foreign_language"/>
 
 
@@ -64,34 +64,46 @@
                     android:textSize="@dimen/_11sdp"
                     android:text="@string/label_communication_skills"/>
 
-                <CheckBox
-                    android:id="@+id/cb_yes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button = "?android:attr/listChoiceIndicatorSingle"
-                    android:checked="false"/>
+<!--                <CheckBox-->
+<!--                    android:id="@+id/cb_yes"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:button = "?android:attr/listChoiceIndicatorSingle"-->
+<!--                    android:checked="false"/>-->
 
-                <TextView
-                    android:text="Tốt"
-                    android:gravity="center_vertical|start"
-                    android:layout_width="wrap_content"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:layout_height="wrap_content" />
+<!--                <TextView-->
+<!--                    android:text="Tốt"-->
+<!--                    android:gravity="center_vertical|start"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                    android:layout_height="wrap_content" />-->
 
-                <CheckBox
-                    android:id="@+id/cb_no"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button = "?android:attr/listChoiceIndicatorSingle"
-                    android:checked="false"/>
+<!--                <CheckBox-->
+<!--                    android:id="@+id/cb_no"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:button = "?android:attr/listChoiceIndicatorSingle"-->
+<!--                    android:checked="false"/>-->
 
-                <TextView
-                    android:text="Trung Bình"
-                    android:layout_width="wrap_content"
-                    android:gravity="center_vertical|start"
-                    android:layout_height="wrap_content" />
+<!--                <TextView-->
+<!--                    android:text="Trung Bình"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:gravity="center_vertical|start"-->
+<!--                    android:layout_height="wrap_content" />-->
 
             </LinearLayout>
+
+            <!-- Title -->
+            <TextView
+                style="@style/Info_Title_Well_Companion"
+                android:background="@drawable/bg_green_border_gray_filled_rounded_corner"
+                android:text="@string/label_work_experience"/>
+
+            <TextView
+                android:id="@+id/tv_current_job"
+                android:layout_marginTop="@dimen/_5sdp"
+                style="@style/Tv_Package_service_drop_down"
+                android:text="@string/label_current_job"/>
         </LinearLayout>
     </ScrollView>
 

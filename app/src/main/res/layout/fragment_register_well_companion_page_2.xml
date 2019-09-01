@@ -32,39 +32,40 @@
             <TextView
                 android:id="@+id/tv_register_for"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/Tv_Package_service"
+                style="@style/Tv_Package_service_drop_down"
+                android:drawableEnd="@drawable/arrow_down_gray"
                 android:text="@string/label_for"/>
 
             <TextView
                 android:id="@+id/tv_register_free_time"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/Tv_Package_service"
+                style="@style/Tv_Package_service_drop_down"
                 android:text="@string/label_free_time_in_week"/>
+
+            <TextView
+                android:id="@+id/tv_register_free"
+                android:layout_marginTop="@dimen/_5sdp"
+                style="@style/Tv_Package_service_drop_down"
+                android:text="khung gio"/>
 
             <TextView
                 android:id="@+id/tv_register_start_time"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/Tv_Package_service"
+                style="@style/Tv_Package_service_drop_down"
                 android:text="@string/label_start_time"/>
 
             <TextView
                 android:id="@+id/tv_register_support_place"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/Tv_Package_service"
+                style="@style/Tv_Package_service_drop_down"
                 android:text="@string/label_support_place"/>
 
-            <!-- Title -->
-            <TextView
-                style="@style/Info_Title_Well_Companion"
-                android:background="@drawable/bg_green_border_gray_filled_rounded_corner"
-                android:text="@string/label_work_experience"/>
-
-            <TextView
-                android:id="@+id/tv_current_job"
-                android:layout_marginTop="@dimen/_5sdp"
-                style="@style/Tv_Package_service"
-                android:text="@string/label_current_job"/>
-
+            <ImageView
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/arrow_down_gray"
+                />
         </LinearLayout>
     </ScrollView>
 
