@@ -33,7 +33,7 @@ public class AppConstant {
     public static final String API_CHANGE_PASSWORD = "api/account/changeForgotPassword";
     public static final String API_UPDATE_ON_FLIGHT = "api/poster/updateOnFlight";
     public static final String API_UPDATE_GUIDES_PLACE = "api/poster/updateGuidesPlace";
-    public static final String API_UPDATE_WELL_TRAINED = "api/poster/updateWellTrained";
+    public static final String API_UPDATE_WELL_TRAINED = "api/poster/updateWellTrainedPost";
     public static final String API_GET_LIST_POST = "api/poster/getListPost";
     public static final String API_SELECTED_ASSISTANCE = "api/SelectList/getExpectAssistance";
     public static final String API_ADDITIONAL_ASSISTANCE = "api/SelectList/getAdditionalAssistance";

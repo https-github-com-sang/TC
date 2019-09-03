@@ -5,7 +5,11 @@ import android.text.TextUtils
 import android.view.View
 import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_register_flight_need.*
+import kotlinx.android.synthetic.main.layout_back_next.*
 import sang.thai.tran.travelcompanion.R
+import sang.thai.tran.travelcompanion.activity.BaseActivity
+import sang.thai.tran.travelcompanion.activity.MainActivity
+import sang.thai.tran.travelcompanion.model.Assistance
 import sang.thai.tran.travelcompanion.model.RegisterModel
 import sang.thai.tran.travelcompanion.model.Response
 import sang.thai.tran.travelcompanion.retrofit.BaseObserver
@@ -48,6 +52,15 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
 //        email_sign_in_button.setOnClickListener {
 //            (activity as MainActivity).finishRegister()
 //        }
+
+        btn_next.setOnClickListener {
+            (activity as MainActivity).registerWell(true)
+        }
+
+        btn_back.setOnClickListener {
+            //            openDepartureDate()
+            (activity as BaseActivity).onBackPressed()
+        }
     }
 
     override fun getApiUrl(): String {
@@ -68,78 +81,77 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
 
     @OnClick(R.id.tv_register_service)
     fun registerService() {
-        if (activity == null) {
-            return
-        }
-        HttpRetrofitClientBase.getInstance().executeGet(API_SELECTED_ASSISTANCE,
-                ApplicationSingleton.getInstance().token, object : BaseObserver<Response>(true) {
-            override fun onSuccess(result: Response, response: String) {
-                hideProgressDialog()
-                if (activity == null) {
-                    return
-                }
-                if (result.statusCode == AppConstant.SUCCESS_CODE) {
-                    Log.d("Sang", "response result.result?.data : ${result.result?.data?.list}")
-                    result.result?.data?.list?.let { it ->
-                        val listString = Array(it.size) { "$it" }
-                        for (i in 0 until it.size) {
-                            listString[i] = it.get(i).text_VN.toString()
-                        }
-                        activity!!.runOnUiThread {
-                            showOptionDialog(tv_register_service!!, getString(R.string.label_register_service_package), listString)
-                        }
-                    }
-                } else {
-                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
-                }
-            }
-
-            override fun onFailure(e: Throwable, errorMsg: String) {
-                hideProgressDialog()
-                if (!TextUtils.isEmpty(errorMsg)) {
-                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ -> dialog.dismiss() } }
-                }
-            }
-        })
-//        activity?.resources?.getTextArray(R.array.service_pkg)?.let { showOptionDialog(tv_register_service!!, getString(R.string.label_register_service_package), it) }
+//        if (activity == null) {
+//            return
+//        }
+//        HttpRetrofitClientBase.getInstance().executeGet(API_SELECTED_ASSISTANCE,
+//                ApplicationSingleton.getInstance().token, object : BaseObserver<Response>(true) {
+//            override fun onSuccess(result: Response, response: String) {
+//                hideProgressDialog()
+//                if (activity == null) {
+//                    return
+//                }
+//                if (result.statusCode == AppConstant.SUCCESS_CODE) {
+//                    Log.d("Sang", "response result.result?.data : ${result.result?.data?.list}")
+//                    result.result?.data?.list?.let { it ->
+//                        val listString = Array(it.size) { "$it" }
+//                        for (i in it.indices) {
+//                            listString[i] = it.get(i).text_VN.toString()
+//                        }
+//                        activity!!.runOnUiThread {
+//                            showOptionDialog(tv_register_service!!, getString(R.string.label_register_service_package), listString)
+//                        }
+//                    }
+//                } else {
+//                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
+//                }
+//            }
+//
+//            override fun onFailure(e: Throwable, errorMsg: String) {
+//                hideProgressDialog()
+//                if (!TextUtils.isEmpty(errorMsg)) {
+//                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ -> dialog.dismiss() } }
+//                }
+//            }
+//        })
     }
 
     @OnClick(R.id.tv_register_service_more)
     fun registerServiceMore() {
-        if (activity == null) {
-            return
-        }
-        HttpRetrofitClientBase.getInstance().executeGet(API_ADDITIONAL_ASSISTANCE,
-                ApplicationSingleton.getInstance().token, object : BaseObserver<Response>(true) {
-            override fun onSuccess(result: Response, response: String) {
-                hideProgressDialog()
-                if (activity == null) {
-                    return
-                }
-                if (result.statusCode == AppConstant.SUCCESS_CODE) {
-                    Log.d("Sang", "response: $response")
-                    result.result?.data?.list?.let { it ->
-                        val listString = Array(it.size) { "$it" }
-                        for (i in 0 until it.size) {
-                            listString[i] = it.get(i).text_VN.toString()
-                        }
-                        activity!!.runOnUiThread {
-                            showOptionDialog(tv_register_service_more!!, getString(R.string.label_register_service_package_additional), listString)
-                        }
-                    }
-                } else {
-                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
-                }
-            }
-
-            override fun onFailure(e: Throwable, errorMsg: String) {
-                hideProgressDialog()
-                if (!TextUtils.isEmpty(errorMsg)) {
-                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ -> dialog.dismiss() } }
-                }
-            }
-        })
-//        activity?.resources?.getTextArray(servicePkgMoreId)?.let { showOptionDialog(tv_register_service_more!!, getString(R.string.label_register_service_package_additional), it) }
+//        if (activity == null) {
+//            return
+//        }
+//        HttpRetrofitClientBase.getInstance().executeGet(API_ADDITIONAL_ASSISTANCE,
+//                ApplicationSingleton.getInstance().token, object : BaseObserver<Response>(true) {
+//            override fun onSuccess(result: Response, response: String) {
+//                hideProgressDialog()
+//                if (activity == null) {
+//                    return
+//                }
+//                if (result.statusCode == AppConstant.SUCCESS_CODE) {
+//                    Log.d("Sang", "response: $response")
+//                    lstAssistance = result.result?.data?.list!!
+//                    result.result?.data?.list?.let { it ->
+//                        val listString = Array(it.size) { "$it" }
+//                        for (i in 0 until it.size) {
+//                            listString[i] = it.get(i).text_VN.toString()
+//                        }
+//                        activity!!.runOnUiThread {
+//                            showOptionDialog(tv_register_service_more!!, getString(R.string.label_register_service_package_additional), listString)
+//                        }
+//                    }
+//                } else {
+//                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
+//                }
+//            }
+//
+//            override fun onFailure(e: Throwable, errorMsg: String) {
+//                hideProgressDialog()
+//                if (!TextUtils.isEmpty(errorMsg)) {
+//                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ -> dialog.dismiss() } }
+//                }
+//            }
+//        })
     }
 
     companion object {

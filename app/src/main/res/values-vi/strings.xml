@@ -137,6 +137,10 @@
     <string name="label_kids">Trẻ em: </string>
     <string name="label_elder">Người cao tuổi: </string>
 
+    <string name="label_disability_number">Người khuyết tật: </string>
+
+    <string name="label_pregnant_number">Phụ nữ mang thai: </string>
+
     <string name="label_register_service_package">Đăng ký gói trợ giúp : </string>
     <string name="label_register_service_package_additional">Đăng ký dịch vụ bổ sung: </string>
 
@@ -253,4 +257,6 @@ Email: tuyendung.travelwest@gmail.com</string>
     <string name="label_specialized">Chuyên môn:</string>
     <string name="label_foreign_language">Ngoại ngữ:</string>
     <string name="label_communication_skills">Giao tiếp: </string>
+
+    <string name="label_need_requester">Đăng ký cần trợ giúp </string>
 </resources>

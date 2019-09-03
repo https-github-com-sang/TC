@@ -35,7 +35,7 @@ class Data {
 
 //    private val list: List<Assistance>? = null // This has been added newly and cannot be initialized by gson.
 
-    fun getResults(): JsonElement? {
+    private fun getResults(): JsonElement? {
         return results
     }
 

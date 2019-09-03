@@ -1,17 +1,10 @@
 package sang.thai.tran.travelcompanion.fragment
 
 import android.os.Bundle
-import android.view.View
 import butterknife.OnClick
-import kotlinx.android.synthetic.main.fragment_register_flight.*
-import kotlinx.android.synthetic.main.fragment_register_flight.email_sign_in_button
-import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
-import kotlinx.android.synthetic.main.fragment_register_well_companion.*
-import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.*
-import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.btn_back
-import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.btn_next
+import kotlinx.android.synthetic.main.layout_back_next.*
 import sang.thai.tran.travelcompanion.R
-import sang.thai.tran.travelcompanion.activity.LoginActivity
+import sang.thai.tran.travelcompanion.activity.BaseActivity
 
 class RegisterWellCompanionFragmentPage2 : BaseFragment() {
 
@@ -27,7 +20,7 @@ class RegisterWellCompanionFragmentPage2 : BaseFragment() {
 
         btn_back.setOnClickListener {
             //            openDepartureDate()
-            (activity as LoginActivity).onBackPressed()
+            (activity as BaseActivity).onBackPressed()
         }
     }
 
