@@ -136,6 +136,7 @@
     <string name="label_elder">Elders: </string>
     <string name="label_disability_number">Disability: </string>
     <string name="label_pregnant_number">Pregnant: </string>
+    <string name="label_middle_number">Middle: </string>
 
     <string name="label_register_service_package">Request for service package: </string>
 

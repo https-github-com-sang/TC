@@ -7,6 +7,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
+import kotlinx.android.synthetic.main.fragment_register_hourly_service.et_full_name
+import kotlinx.android.synthetic.main.fragment_register_hourly_service.ll_parent
+import kotlinx.android.synthetic.main.fragment_register_user_info.*
 import kotlinx.android.synthetic.main.layout_back_next.*
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.BaseActivity
@@ -22,6 +25,7 @@ import sang.thai.tran.travelcompanion.utils.AppUtils.openTimePicker
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
 import sang.thai.tran.travelcompanion.utils.DialogUtils
 import sang.thai.tran.travelcompanion.utils.Log
+import sang.thai.tran.travelcompanion.view.EditTextViewLayout
 
 class RegisterHourlyServiceFragment : BaseFragment() {
 
@@ -70,11 +74,12 @@ class RegisterHourlyServiceFragment : BaseFragment() {
 
         btn_next.setOnClickListener {
             //            openDepartureDate()
-            registerApi()
+            executeRegister()
         }
 
         btn_back.setOnClickListener {
             //            openDepartureDate()
+            createRegisterFlight()
             (activity as BaseActivity).onBackPressed()
 
         }
@@ -94,42 +99,9 @@ class RegisterHourlyServiceFragment : BaseFragment() {
             return
         }
         registerServiceMore(API_SELECTED_ASSISTANCE)
-//        showOptionDialog(tv_register_service?, getString(R.string.label_for), activity?.resources.getTextArray(R.array.register_for_list))
-//        HttpRetrofitClientBase.getInstance().executeGet(AppConstant.API_SELECTED_ASSISTANCE,
-//                ApplicationSingleton.getInstance().token, object : BaseObserver<Response>(true) {
-//            override fun onSuccess(result: Response, response: String) {
-//                hideProgressDialog()
-//                if (activity == null) {
-//                    return
-//                }
-//                if (result.statusCode == AppConstant.SUCCESS_CODE) {
-//                    Log.d("Sang", "response: $response")
-//                    lstAssistance = result.result?.data?.list!!
-//                    result.result?.data?.list?.let { it ->
-//                        val listString  = Array(it.size) { "$it" }
-//                        for ( i in 0 until it.size) {
-//                            listString[i] = it[i].text_VN.toString()
-//                        }
-//                        activity?.runOnUiThread { showOptionDialog(tv_register_service, getString(R.string.label_register_service_package), listString)
-//                    } }
-//                } else {
-//                    activity?.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
-//                }
-//            }
-//
-//            override fun onFailure(e: Throwable, errorMsg: String) {
-//                hideProgressDialog()
-//                if (!TextUtils.isEmpty(errorMsg)) {
-//                    activity?.runOnUiThread { DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ -> dialog.dismiss() } }
-//                }
-//            }
-//        })
-//
-//        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//        imm.hideSoftInputFromWindow(tv_register_service?.windowToken, 0)
     }
 
-    fun registerServiceMore(url : String) {
+    private fun registerServiceMore(url : String) {
         if (activity == null || isMultiClicked()) {
             return
         }
@@ -208,7 +180,26 @@ class RegisterHourlyServiceFragment : BaseFragment() {
         registerModel.pickupPoint = et_pickup_place?.text
         registerModel.visitPlaces = et_visit_place?.text
         registerModel.additionalServices = tv_register_service_more?.text.toString()
+        ApplicationSingleton.getInstance().registerModel = registerModel
         return registerModel
+    }
+
+
+    private fun executeRegister() {
+        if (ll_parent == null) {
+            return
+        }
+        val count = ll_parent?.childCount
+        for (i in 0 until count!!) {
+            val v = ll_parent?.getChildAt(i)
+            if (v is EditTextViewLayout) {
+                if (TextUtils.isEmpty(v.text)) {
+                    showWarningDialog(R.string.label_input_info)
+                    return
+                }
+            }
+        }
+        registerApi()
     }
 
     companion object {

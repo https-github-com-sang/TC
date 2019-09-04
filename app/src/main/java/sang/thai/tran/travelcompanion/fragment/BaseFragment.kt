@@ -180,4 +180,8 @@ open class BaseFragment : Fragment() {
         lastClickTime = now
         return false
     }
+
+    protected fun showWarningDialog(string: Int) {
+        DialogUtils.showAlertDialog(activity, getString(string)) { dialog, which -> dialog.dismiss() }
+    }
 }

@@ -107,6 +107,14 @@
                 custom:inputType="3"
                 custom:text="@string/label_pregnant_number"/>
 
+            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                style="@style/Info_Input"
+                android:id="@+id/et_middle_number"
+                android:layout_marginStart="@dimen/_30sdp"
+                custom:isGreen="true"
+                custom:inputType="3"
+                custom:text="@string/label_middle_number"/>
+
             <TextView
                 android:layout_marginTop="@dimen/_15sdp"
                 android:id="@+id/tv_register_service"
@@ -121,12 +129,12 @@
                 style="@style/Tv_Package_service_drop_down"
                 android:text="@string/label_register_service_package_additional"/>
 
-            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
-                style="@style/Info_Input"
-                android:id="@+id/et_msg"
-                custom:isGreen="true"
-                android:layout_marginTop="@dimen/_10sdp"
-                custom:text="@string/label_message"/>
+<!--            <sang.thai.tran.travelcompanion.view.EditTextViewLayout-->
+<!--                style="@style/Info_Input"-->
+<!--                android:id="@+id/et_msg"-->
+<!--                custom:isGreen="true"-->
+<!--                android:layout_marginTop="@dimen/_10sdp"-->
+<!--                custom:text="@string/label_message"/>-->
 
 <!--            <Button-->
 <!--                android:id="@+id/email_sign_in_button"-->

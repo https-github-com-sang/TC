@@ -136,7 +136,7 @@
     <string name="label_number_people">Số người thân đi cùng : </string>
     <string name="label_kids">Trẻ em: </string>
     <string name="label_elder">Người cao tuổi: </string>
-
+    <string name="label_middle_number">Người lớn: </string>
     <string name="label_disability_number">Người khuyết tật: </string>
 
     <string name="label_pregnant_number">Phụ nữ mang thai: </string>

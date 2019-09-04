@@ -368,10 +368,6 @@ class RegisterUserInfoFragment : BaseFragment() {
         return userInfo
     }
 
-    private fun showWarningDialog(string: Int) {
-        DialogUtils.showAlertDialog(activity, getString(string)) { dialog, which -> dialog.dismiss() }
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         // Result code is RESULT_OK only if the user selects an Image

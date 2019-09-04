@@ -144,6 +144,7 @@ open class RegisterFlightFragment : BaseFragment() {
         registerModel.departureAirport = et_airport_departure?.text
         registerModel.arrivalAirport = et_arrival_airport?.text
         addMoreService(registerModel)
+        ApplicationSingleton.getInstance().registerModel = registerModel
         return registerModel
     }
 

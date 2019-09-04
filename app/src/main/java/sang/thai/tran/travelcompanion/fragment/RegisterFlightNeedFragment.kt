@@ -9,58 +9,27 @@ import kotlinx.android.synthetic.main.layout_back_next.*
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.BaseActivity
 import sang.thai.tran.travelcompanion.activity.MainActivity
-import sang.thai.tran.travelcompanion.model.Assistance
 import sang.thai.tran.travelcompanion.model.RegisterModel
-import sang.thai.tran.travelcompanion.model.Response
-import sang.thai.tran.travelcompanion.retrofit.BaseObserver
-import sang.thai.tran.travelcompanion.retrofit.HttpRetrofitClientBase
 import sang.thai.tran.travelcompanion.utils.AppConstant
-import sang.thai.tran.travelcompanion.utils.AppConstant.API_ADDITIONAL_ASSISTANCE
-import sang.thai.tran.travelcompanion.utils.AppConstant.API_SELECTED_ASSISTANCE
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
-import sang.thai.tran.travelcompanion.utils.DialogUtils
-import sang.thai.tran.travelcompanion.utils.Log
+import sang.thai.tran.travelcompanion.view.EditTextViewLayout
 
 open class RegisterFlightNeedFragment : RegisterFlightFragment() {
 
 
-    protected open val servicePkgMoreId: Int
-        get() = R.array.service_pkg_more
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        tv_register_service_more?.requestFocus()
-        tv_register_service_more?.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                registerServiceMore()
-            }
-        }
-        tv_register_service_more.setOnClickListener {
-            registerServiceMore()
-        }
-
-        tv_register_service?.requestFocus()
-        tv_register_service?.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                registerService()
-            }
-        }
-        tv_register_service.setOnClickListener {
-            registerService()
-        }
-//        email_sign_in_button.setOnClickListener {
-//            (activity as MainActivity).finishRegister()
-//        }
-
         btn_next.setOnClickListener {
-            (activity as MainActivity).registerWell(true)
+            executeRegister()
         }
 
         btn_back.setOnClickListener {
-            //            openDepartureDate()
+            createRegisterFlight()
             (activity as BaseActivity).onBackPressed()
         }
+
+        fillData()
     }
 
     override fun getApiUrl(): String {
@@ -68,90 +37,53 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
     }
 
     override fun addMoreService(registerModel: RegisterModel) {
-        registerModel.additionalServices = tv_register_service_more?.text.toString()
-        registerModel.note = et_msg?.text
-        registerModel.childrenNumber = Integer.valueOf(et_kid_number.text)
-        registerModel.elderlyNumber = Integer.valueOf(et_elders_number.text)
+        if (!TextUtils.isEmpty(et_kid_number.text))
+            registerModel.childrenNumber = Integer.valueOf(et_kid_number.text)
+        if (!TextUtils.isEmpty(et_elders_number.text))
+            registerModel.elderlyNumber = Integer.valueOf(et_elders_number.text)
+        if (!TextUtils.isEmpty(et_pregnant_number.text))
+            registerModel.pregnantNumber = Integer.valueOf(et_pregnant_number.text)
+        if (!TextUtils.isEmpty(et_middle_number.text))
+            registerModel.middleAgeNumber = Integer.valueOf(et_middle_number.text)
+        if (!TextUtils.isEmpty(et_disability_number.text))
+            registerModel.disabilityNumber = Integer.valueOf(et_disability_number.text)
+    }
 
+    fun fillData() {
+        val registerModel = ApplicationSingleton.getInstance().registerModel
+        if (registerModel != null) {
+            if (registerModel.childrenNumber > 0)
+                et_kid_number.text = registerModel.childrenNumber.toString()
+            if (registerModel.elderlyNumber > 0)
+                et_elders_number.text = registerModel.elderlyNumber.toString()
+            if (registerModel.pregnantNumber > 0)
+                et_pregnant_number.text = registerModel.pregnantNumber.toString()
+            if (registerModel.middleAgeNumber > 0)
+                et_middle_number.text = registerModel.middleAgeNumber.toString()
+            if (registerModel.disabilityNumber > 0)
+                et_disability_number.text = registerModel.disabilityNumber.toString()
+        }
     }
 
     override fun layoutId(): Int {
         return R.layout.fragment_register_flight_need
     }
 
-    @OnClick(R.id.tv_register_service)
-    fun registerService() {
-//        if (activity == null) {
-//            return
-//        }
-//        HttpRetrofitClientBase.getInstance().executeGet(API_SELECTED_ASSISTANCE,
-//                ApplicationSingleton.getInstance().token, object : BaseObserver<Response>(true) {
-//            override fun onSuccess(result: Response, response: String) {
-//                hideProgressDialog()
-//                if (activity == null) {
-//                    return
-//                }
-//                if (result.statusCode == AppConstant.SUCCESS_CODE) {
-//                    Log.d("Sang", "response result.result?.data : ${result.result?.data?.list}")
-//                    result.result?.data?.list?.let { it ->
-//                        val listString = Array(it.size) { "$it" }
-//                        for (i in it.indices) {
-//                            listString[i] = it.get(i).text_VN.toString()
-//                        }
-//                        activity!!.runOnUiThread {
-//                            showOptionDialog(tv_register_service!!, getString(R.string.label_register_service_package), listString)
-//                        }
-//                    }
-//                } else {
-//                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
-//                }
-//            }
-//
-//            override fun onFailure(e: Throwable, errorMsg: String) {
-//                hideProgressDialog()
-//                if (!TextUtils.isEmpty(errorMsg)) {
-//                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ -> dialog.dismiss() } }
-//                }
-//            }
-//        })
-    }
-
-    @OnClick(R.id.tv_register_service_more)
-    fun registerServiceMore() {
-//        if (activity == null) {
-//            return
-//        }
-//        HttpRetrofitClientBase.getInstance().executeGet(API_ADDITIONAL_ASSISTANCE,
-//                ApplicationSingleton.getInstance().token, object : BaseObserver<Response>(true) {
-//            override fun onSuccess(result: Response, response: String) {
-//                hideProgressDialog()
-//                if (activity == null) {
-//                    return
-//                }
-//                if (result.statusCode == AppConstant.SUCCESS_CODE) {
-//                    Log.d("Sang", "response: $response")
-//                    lstAssistance = result.result?.data?.list!!
-//                    result.result?.data?.list?.let { it ->
-//                        val listString = Array(it.size) { "$it" }
-//                        for (i in 0 until it.size) {
-//                            listString[i] = it.get(i).text_VN.toString()
-//                        }
-//                        activity!!.runOnUiThread {
-//                            showOptionDialog(tv_register_service_more!!, getString(R.string.label_register_service_package_additional), listString)
-//                        }
-//                    }
-//                } else {
-//                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
-//                }
-//            }
-//
-//            override fun onFailure(e: Throwable, errorMsg: String) {
-//                hideProgressDialog()
-//                if (!TextUtils.isEmpty(errorMsg)) {
-//                    activity!!.runOnUiThread { DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ -> dialog.dismiss() } }
-//                }
-//            }
-//        })
+    private fun executeRegister() {
+        if (ll_parent == null) {
+            return
+        }
+        val count = ll_parent?.childCount
+        for (i in 0 until count!!) {
+            val v = ll_parent?.getChildAt(i)
+            if (v is EditTextViewLayout) {
+                if (TextUtils.isEmpty(v.text)) {
+                    showWarningDialog(R.string.label_input_info)
+                    return
+                }
+            }
+        }
+        (activity as MainActivity).registerWell(true)
     }
 
     companion object {
