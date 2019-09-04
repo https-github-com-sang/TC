@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -24,51 +24,20 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="@drawable/bg_green_border_white_filled_rounded_corner"
-                android:orientation="horizontal">
+            <TextView
+                style="@style/Info_Title_Well_Companion"
+                android:background="@drawable/bg_green_border_gray_filled_rounded_corner"
+                android:text="@string/label_professional_qualification_title" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_10sdp"
-                    android:text="@string/label_communication_skills"
-                    android:textColor="@android:color/black"
-                    android:textSize="@dimen/_11sdp" />
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="@dimen/_10sdp"-->
+            <!--                android:layout_marginTop="@dimen/_5sdp"-->
+            <!--                android:background="@drawable/bg_green_border_white_filled_rounded_corner"-->
+            <!--                android:orientation="horizontal">-->
 
-                <!--                <CheckBox-->
-                <!--                    android:id="@+id/cb_yes"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:button = "?android:attr/listChoiceIndicatorSingle"-->
-                <!--                    android:checked="false"/>-->
-
-                <!--                <TextView-->
-                <!--                    android:text="Tốt"-->
-                <!--                    android:gravity="center_vertical|start"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_marginEnd="@dimen/_10sdp"-->
-                <!--                    android:layout_height="wrap_content" />-->
-
-                <!--                <CheckBox-->
-                <!--                    android:id="@+id/cb_no"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:button = "?android:attr/listChoiceIndicatorSingle"-->
-                <!--                    android:checked="false"/>-->
-
-                <!--                <TextView-->
-                <!--                    android:text="Trung Bình"-->
-                <!--                    android:layout_width="wrap_content"-->
-                <!--                    android:gravity="center_vertical|start"-->
-                <!--                    android:layout_height="wrap_content" />-->
-
-            </LinearLayout>
+            <!--            </LinearLayout>-->
 
             <TextView
                 android:id="@+id/tv_professional_qualification"
@@ -82,31 +51,53 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="@string/label_specialized" />
 
+            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                style="@style/Info_Input"
+                custom:isGreen="true"
+                custom:text="Chuyên ngành khác" />
+
             <TextView
                 android:id="@+id/tv_foreign_language"
                 style="@style/Tv_Package_service_drop_down"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="@string/label_foreign_language" />
 
-
             <TextView
-                style="@style/Info_Title_Well_Companion"
-                android:background="@drawable/bg_green_border_gray_filled_rounded_corner"
-                android:text="@string/label_professional_qualification_title" />
+                style="@style/Tv_Package_service_drop_down"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/label_communication_skills"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/_11sdp" />
 
             <!-- Title -->
             <TextView
+                android:layout_marginTop="@dimen/_20sdp"
                 style="@style/Info_Title_Well_Companion"
                 android:background="@drawable/bg_green_border_gray_filled_rounded_corner"
                 android:text="@string/label_work_experience" />
 
-            <TextView
+
+            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
                 android:id="@+id/tv_current_job"
-                style="@style/Tv_Package_service_drop_down"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="@string/label_current_job" />
+                style="@style/Info_Input"
+                custom:isGreen="true"
+                custom:text="@string/label_current_job"
+                />
+
+            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                style="@style/Info_Input"
+                custom:isGreen="true"
+                custom:text="Nơi làm việc/ Trường :" />
+
+            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                style="@style/Info_Input"
+                custom:isGreen="true"
+                custom:text="Chức vụ:" />
+
+            <include layout="@layout/layout_back_next" />
         </LinearLayout>
     </ScrollView>
 
-    <include layout="@layout/layout_back_next" />
+
 </LinearLayout>

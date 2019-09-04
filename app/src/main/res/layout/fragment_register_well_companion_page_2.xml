@@ -60,12 +60,6 @@
                 style="@style/Tv_Package_service_drop_down"
                 android:text="@string/label_support_place"/>
 
-            <ImageView
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/arrow_down_gray"
-                />
         </LinearLayout>
     </ScrollView>
 

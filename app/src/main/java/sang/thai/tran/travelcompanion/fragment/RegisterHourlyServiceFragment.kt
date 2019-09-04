@@ -7,9 +7,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
-import kotlinx.android.synthetic.main.fragment_register_hourly_service.et_full_name
-import kotlinx.android.synthetic.main.fragment_register_hourly_service.ll_parent
-import kotlinx.android.synthetic.main.fragment_register_user_info.*
 import kotlinx.android.synthetic.main.layout_back_next.*
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.BaseActivity
@@ -101,7 +98,7 @@ class RegisterHourlyServiceFragment : BaseFragment() {
         registerServiceMore(API_SELECTED_ASSISTANCE)
     }
 
-    private fun registerServiceMore(url : String) {
+    private fun registerServiceMore(url: String) {
         if (activity == null || isMultiClicked()) {
             return
         }
@@ -115,14 +112,16 @@ class RegisterHourlyServiceFragment : BaseFragment() {
                 if (result.statusCode == AppConstant.SUCCESS_CODE) {
                     Log.d("Sang", "response: $response")
                     lstAssistance = result.result?.data?.list!!
-                    
+
                     result.result?.data?.list?.let { it ->
-                        val listString  = Array(it.size) { "$it" }
-                        for ( i in 0 until it.size) {
+                        val listString = Array(it.size) { "$it" }
+                        for (i in 0 until it.size) {
                             listString[i] = it.get(i).text_VN.toString()
                         }
-                        activity?.runOnUiThread { showOptionDialog(tv_register_service_more, getString(R.string.label_register_service_package_additional), listString)
-                    } }
+                        activity?.runOnUiThread {
+                            showOptionDialog(tv_register_service_more, getString(R.string.label_register_service_package_additional), listString)
+                        }
+                    }
                 } else {
                     activity?.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
                 }
@@ -175,11 +174,23 @@ class RegisterHourlyServiceFragment : BaseFragment() {
 
         registerModel.id = ApplicationSingleton.getInstance().userInfo.code
         registerModel.contactName = et_full_name?.text
-        registerModel.wellTrainedObject = tv_register_service?.text.toString()
+
+        var wellTrainedObject = tv_register_object?.text.toString()
+        wellTrainedObject = wellTrainedObject.substring(wellTrainedObject.length - getString(R.string.label_register_object).length, wellTrainedObject.length)
+        registerModel.wellTrainedObject = wellTrainedObject
+
+        var expectAssistance = tv_register_service?.text.toString()
+        expectAssistance = expectAssistance.substring(expectAssistance.length - getString(R.string.label_register_service_package).length, expectAssistance.length)
+        registerModel.expectAssistance = expectAssistance
+
         registerModel.departureDateFrom = et_departure_date?.text.toString() + " " + et_departure_time?.text.toString()
         registerModel.pickupPoint = et_pickup_place?.text
         registerModel.visitPlaces = et_visit_place?.text
-        registerModel.additionalServices = tv_register_service_more?.text.toString()
+
+        var additionalServices = tv_register_service_more?.text.toString()
+        additionalServices = additionalServices.substring(additionalServices.length - getString(R.string.label_register_service_package_additional).length, additionalServices.length)
+        registerModel.additionalServices = additionalServices
+        
         ApplicationSingleton.getInstance().registerModel = registerModel
         return registerModel
     }

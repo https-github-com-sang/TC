@@ -21,6 +21,9 @@ interface APIInterface {
     @GET
     operator fun get(@Url url: String, @Query(value = API_PARAM_ACCESS_TOKEN) token: String): Observable<Response>
 
+    @GET
+    operator fun get(@Url url: String, @Query(value = API_PARAM_ACCESS_TOKEN) token: String,@Query(value = "page") page: Int): Observable<Response>
+
     @POST
     fun uploadAudio(@Url url: String, @Body requestBodyTmp: RequestBody): Observable<String>
 

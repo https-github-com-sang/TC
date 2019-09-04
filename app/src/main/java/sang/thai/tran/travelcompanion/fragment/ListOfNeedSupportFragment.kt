@@ -28,11 +28,12 @@ import sang.thai.tran.travelcompanion.utils.Log
 import java.util.HashMap
 
 open class ListOfNeedSupportFragment : BaseFragment() {
-
+    var mPage = 1
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         showProgressDialog()
         HttpRetrofitClientBase.getInstance().executeGet(API_GET_LIST_POST,
+                mPage,
                 ApplicationSingleton.getInstance().token, object : BaseObserver<Response>(true) {
             override fun onSuccess(result: Response, response: String) {
                 hideProgressDialog()
@@ -43,14 +44,22 @@ open class ListOfNeedSupportFragment : BaseFragment() {
                     Log.d("Sang", "response result.result?.listNeedSupport : ${result.result?.data?.list}")
                     activity?.runOnUiThread { getList(result.result?.data?.list!!) }
                 } else {
-                    activity?.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
+                    activity?.runOnUiThread {
+                        tv_not_found.visibility = View.VISIBLE
+                        DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() }
+                    }
                 }
             }
 
             override fun onFailure(e: Throwable, errorMsg: String) {
                 hideProgressDialog()
                 if (!TextUtils.isEmpty(errorMsg)) {
-                    activity?.runOnUiThread { DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ -> dialog.dismiss() } }
+                    activity?.runOnUiThread {
+                        tv_not_found.visibility = View.VISIBLE
+                        DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                    }
                 }
             }
         })

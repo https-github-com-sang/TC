@@ -36,6 +36,12 @@
                 custom:text="@string/label_full_name_of_service_requester"/>
 
             <TextView
+                android:id="@+id/tv_register_object"
+                android:layout_marginTop="@dimen/_5sdp"
+                style="@style/Tv_Package_service_drop_down"
+                android:text="@string/label_register_object"/>
+
+            <TextView
                 android:id="@+id/tv_register_service"
                 android:layout_marginTop="@dimen/_5sdp"
                 style="@style/Tv_Package_service_drop_down"
@@ -47,12 +53,11 @@
                 custom:isGreen="true"
                 custom:text="@string/label_date_registration"/>
 
-            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
-                style="@style/Info_Input"
+            <TextView
+                android:layout_marginTop="@dimen/_10sdp"
+                style="@style/Tv_Package_service"
                 android:id="@+id/et_departure_time"
-                custom:isGreen="true"
-                custom:inputType="3"
-                custom:text="@string/label_need_time"/>
+                android:text="@string/label_need_time"/>
 
             <sang.thai.tran.travelcompanion.view.EditTextViewLayout
                 style="@style/Info_Input"

@@ -155,21 +155,30 @@ class HttpRetrofitClientBase {
     }
 
     fun executeTakeJobOnFlightPost(url: String, token: String, data: FlightJobModel, listener: BaseObserver<Response>) {
-        val service = getRetrofit()!!.create(APIInterface::class.java)
-        val serviceObservable = service.postOnFlightJob(url, token, data)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.computation())
-                .timeout(CONNECT_TIMEOUT, MILLISECONDS)
-        serviceObservable.subscribe(listener)
+        val service = getRetrofit()?.create(APIInterface::class.java)
+        val serviceObservable = service?.postOnFlightJob(url, token, data)
+                ?.subscribeOn(Schedulers.newThread())
+                ?.observeOn(Schedulers.computation())
+                ?.timeout(CONNECT_TIMEOUT, MILLISECONDS)
+        serviceObservable?.subscribe(listener)
     }
 
     fun executeGet(url: String, token: String, listener: BaseObserver<Response>) {
-        val service = getRetrofit()!!.create(APIInterface::class.java)
-        val serviceObservable = service.get(url, token)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.computation())
-                .timeout(CONNECT_TIMEOUT, MILLISECONDS)
-        serviceObservable.subscribe(listener)
+        val service = getRetrofit()?.create(APIInterface::class.java)
+        val serviceObservable = service?.get(url, token)
+                ?.subscribeOn(Schedulers.newThread())
+                ?.observeOn(Schedulers.computation())
+                ?.timeout(CONNECT_TIMEOUT, MILLISECONDS)
+        serviceObservable?.subscribe(listener)
+    }
+
+    fun executeGet(url: String, page : Int, token: String, listener: BaseObserver<Response>) {
+        val service = getRetrofit()?.create(APIInterface::class.java)
+        val serviceObservable = service?.get(url, token, page)
+                ?.subscribeOn(Schedulers.newThread())
+                ?.observeOn(Schedulers.computation())
+                ?.timeout(CONNECT_TIMEOUT, MILLISECONDS)
+        serviceObservable?.subscribe(listener)
     }
 
     fun executeUpload(urlParam: String, imageFile: String, listener: BaseObserver<Response>) {

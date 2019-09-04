@@ -60,8 +60,8 @@
     <string name="label_departure_hour">Giờ đi: </string>
     <string name="label_flight_number">Mã số chuyến bay: </string>
     <string name="label_airline">Hãng hàng không: </string>
-    <string name="label_airport_departure">Sân bay đi: </string>
-    <string name="label_arrival_airport">Sân bay đến: </string>
+    <string name="label_airport_departure">Điểm đón: </string>
+    <string name="label_arrival_airport">Các nơi sẽ đến: </string>
 
     <!--1-->
     <string-array name="service_pkg_list">
@@ -254,9 +254,12 @@ Email: tuyendung.travelwest@gmail.com</string>
     <string name="label_current_job">Công việc hiện tại: </string>
     <string name="label_professional_qualification_title">Bằng cấp chuyên môn</string>
     <string name="label_professional_qualification">Bằng cấp chuyên môn:</string>
-    <string name="label_specialized">Chuyên môn:</string>
+    <string name="label_specialized">Chuyên ngành y:</string>
+    <string name="label_other_specialized">Chuyên ngành khác y:</string>
     <string name="label_foreign_language">Ngoại ngữ:</string>
     <string name="label_communication_skills">Giao tiếp: </string>
 
     <string name="label_need_requester">Đăng ký cần trợ giúp </string>
+
+    <string name="label_register_object">Đối tượng tham gia: </string>
 </resources>

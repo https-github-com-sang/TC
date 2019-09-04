@@ -59,8 +59,8 @@
     <string name="label_departure_hour">Time departure: </string>
     <string name="label_flight_number">Flight number: </string>
     <string name="label_airline">Airline: </string>
-    <string name="label_airport_departure">Airport departure: </string>
-    <string name="label_arrival_airport">Arrival airport: </string>
+    <string name="label_airport_departure">Pick-up point: </string>
+    <string name="label_arrival_airport">Visit places: </string>
 
     <!--1-->
     <string-array name="service_pkg_list">
@@ -139,6 +139,7 @@
     <string name="label_middle_number">Middle: </string>
 
     <string name="label_register_service_package">Request for service package: </string>
+    <string name="label_register_object">Well Trained Object: </string>
 
     <string name="label_register_service_package_additional">Registration for additional services: </string>
 
@@ -249,7 +250,8 @@ Email: tuyendung.travelwest@gmail.com</string>
     <string name="label_current_job">Current job: </string>
     <string name="label_professional_qualification_title">Professional qualification</string>
     <string name="label_professional_qualification">Professional qualification:</string>
-    <string name="label_specialized">Specialized:</string>
+    <string name="label_specialized">Medical Specialized:</string>
+    <string name="label_other_specialized">Other Specialized:</string>
     <string name="label_foreign_language">Foreign language:</string>
     <string name="label_communication_skills">Communication skill: </string>
 
