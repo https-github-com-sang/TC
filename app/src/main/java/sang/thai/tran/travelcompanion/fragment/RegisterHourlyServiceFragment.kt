@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
 import kotlinx.android.synthetic.main.layout_back_next.*
@@ -49,25 +50,9 @@ class RegisterHourlyServiceFragment : BaseFragment() {
         }
         et_to.setOnClickListener { openToTime() }
 
-        tv_register_service_more?.requestFocus()
-        tv_register_service_more?.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (hasFocus) {
-                registerServiceMore(API_ADDITIONAL_ASSISTANCE)
-            }
-//            tv_register_service_more?.clearFocus()
-        }
-        tv_register_service_more.setOnClickListener { registerServiceMore(API_ADDITIONAL_ASSISTANCE) }
+        tv_register_service_more.setOnClickListener { registerServiceMore(API_ADDITIONAL_ASSISTANCE, tv_register_service_more) }
 
-        tv_register_service?.requestFocus()
-        tv_register_service?.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
-            if (!isMultiClicked() && hasFocus) {
-                registerService()
-//                tv_register_service?.clearFocus()
-            } else {
-//                tv_register_service?.clearFocus()
-            }
-        }
-        tv_register_service.setOnClickListener { registerService() }
+        tv_register_service.setOnClickListener { registerServiceMore(API_SELECTED_ASSISTANCE, tv_register_service) }
 
         btn_next.setOnClickListener {
             //            openDepartureDate()
@@ -90,18 +75,13 @@ class RegisterHourlyServiceFragment : BaseFragment() {
         return R.layout.fragment_register_hourly_service
     }
 
-    @OnClick(R.id.tv_register_service)
-    fun registerService() {
+    private fun registerServiceMore(url: String, tv: TextView) {
         if (activity == null || isMultiClicked()) {
             return
         }
-        registerServiceMore(API_SELECTED_ASSISTANCE)
-    }
-
-    private fun registerServiceMore(url: String) {
-        if (activity == null || isMultiClicked()) {
-            return
-        }
+        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(tv.windowToken, 0)
+        Log.d("Sang", "registerServiceMore:")
         HttpRetrofitClientBase.getInstance().executeGet(url,
                 ApplicationSingleton.getInstance().token, object : BaseObserver<Response>(true) {
             override fun onSuccess(result: Response, response: String) {
@@ -119,7 +99,7 @@ class RegisterHourlyServiceFragment : BaseFragment() {
                             listString[i] = it.get(i).text_VN.toString()
                         }
                         activity?.runOnUiThread {
-                            showOptionDialog(tv_register_service_more, getString(R.string.label_register_service_package_additional), listString)
+                            showOptionDialog(tv, tv.text.toString(), listString)
                         }
                     }
                 } else {
@@ -134,8 +114,6 @@ class RegisterHourlyServiceFragment : BaseFragment() {
                 }
             }
         })
-        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(tv_register_service_more?.windowToken, 0)
     }
 
     private fun openDepartureDate() {
@@ -190,7 +168,7 @@ class RegisterHourlyServiceFragment : BaseFragment() {
         var additionalServices = tv_register_service_more?.text.toString()
         additionalServices = additionalServices.substring(additionalServices.length - getString(R.string.label_register_service_package_additional).length, additionalServices.length)
         registerModel.additionalServices = additionalServices
-        
+
         ApplicationSingleton.getInstance().registerModel = registerModel
         return registerModel
     }

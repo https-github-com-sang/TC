@@ -1,14 +1,10 @@
 package sang.thai.tran.travelcompanion.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View
-import butterknife.OnClick
-import kotlinx.android.synthetic.main.fragment_register_flight.*
+import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.fragment_register_flight_need.*
-import kotlinx.android.synthetic.main.fragment_register_flight_need.et_departure_date
-import kotlinx.android.synthetic.main.fragment_register_flight_need.et_departure_hour
-import kotlinx.android.synthetic.main.fragment_register_flight_need.ll_parent
 import kotlinx.android.synthetic.main.layout_back_next.*
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.BaseActivity
@@ -17,6 +13,7 @@ import sang.thai.tran.travelcompanion.model.RegisterModel
 import sang.thai.tran.travelcompanion.utils.AppConstant
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
 import sang.thai.tran.travelcompanion.view.EditTextViewLayout
+
 
 open class RegisterFlightNeedFragment : RegisterFlightFragment() {
 
@@ -91,6 +88,14 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
         (activity as MainActivity).registerWell(true)
     }
 
+    override fun onPause() {
+        val view = activity?.currentFocus
+        view?.let { v ->
+            val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.let { it.hideSoftInputFromWindow(v.windowToken, 0) }
+        }
+        super.onPause()
+    }
     companion object {
         fun newInstance(): RegisterFlightNeedFragment {
             return RegisterFlightNeedFragment()

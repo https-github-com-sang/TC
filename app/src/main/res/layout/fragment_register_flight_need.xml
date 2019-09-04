@@ -55,18 +55,20 @@
                 custom:isGreen="true"
                 custom:text="@string/label_airline"/>
 
-            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
-                android:id="@+id/et_airport_departure"
-                style="@style/Info_Input"
-                android:layout_marginTop="@dimen/_10sdp"
-                custom:isGreen="true"
-                custom:text="@string/label_airport_departure"/>
+<!--            <sang.thai.tran.travelcompanion.view.EditTextViewLayout-->
+<!--                android:id="@+id/et_airport_departure"-->
+<!--                style="@style/Info_Input"-->
+<!--                android:layout_marginTop="@dimen/_10sdp"-->
+<!--                custom:isGreen="true"-->
+<!--                android:visibility="gone"-->
+<!--                custom:text="@string/label_airport_departure"/>-->
 
-            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
-                android:id="@+id/et_arrival_airport"
-                style="@style/Info_Input"
-                custom:isGreen="true"
-                custom:text="@string/label_arrival_airport" />
+<!--            <sang.thai.tran.travelcompanion.view.EditTextViewLayout-->
+<!--                android:id="@+id/et_arrival_airport"-->
+<!--                style="@style/Info_Input"-->
+<!--                android:visibility="gone"-->
+<!--                custom:isGreen="true"-->
+<!--                custom:text="@string/label_arrival_airport" />-->
 
             <TextView
                 android:layout_marginTop="@dimen/_10sdp"
