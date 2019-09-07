@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
 import sang.thai.tran.travelcompanion.BuildConfig
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.MainActivity
+import sang.thai.tran.travelcompanion.interfaces.ResultMultiChoiceDialog
 import sang.thai.tran.travelcompanion.model.BaseModel
 import sang.thai.tran.travelcompanion.model.RegisterModel
 import sang.thai.tran.travelcompanion.model.Response
@@ -51,6 +52,20 @@ open class BaseFragment : Fragment() {
                 tmp
         ) { dialog, _ ->
             val result = title + listToString(tmp)
+            tv_register_service_more?.text = result
+            dialog.dismiss()
+        }
+    }
+
+    protected fun showOptionDialog(tv_register_service_more: TextView?, title: String, option: Array<String>, listener: ResultMultiChoiceDialog) {
+        val tmp = ArrayList<String>()
+        onCreateOptionDialog(activity,
+                title,
+                option,
+                tmp
+        ) { dialog, _ ->
+            val result = title + listToString(tmp)
+            listener.getListSelectedItem(tmp)
             tv_register_service_more?.text = result
             dialog.dismiss()
         }
@@ -185,12 +200,12 @@ open class BaseFragment : Fragment() {
         DialogUtils.showAlertDialog(activity, getString(string)) { dialog, which -> dialog.dismiss() }
     }
 
-    protected fun setOnClickAndShowDialog(tv: TextView, list: List<BaseModel>) {
+    protected fun setOnClickAndShowDialog(tv: TextView, list: List<BaseModel>, listener : ResultMultiChoiceDialog) {
         tv.requestFocus()
-        tv.setOnClickListener { showDialogList(tv, list) }
+        tv.setOnClickListener { showDialogList(tv, list, listener) }
     }
 
-    private fun showDialogList(tv: TextView, list: List<BaseModel>?) {
+    private fun showDialogList(tv: TextView, list: List<BaseModel>?, listener : ResultMultiChoiceDialog) {
         list?.let { it ->
             val listString = Array(it.size) { "$it" }
             for (i in it.indices) {
@@ -201,7 +216,7 @@ open class BaseFragment : Fragment() {
                 }
             }
             activity?.runOnUiThread {
-                showOptionDialog(tv, tv.text.toString(), listString)
+                showOptionDialog(tv, tv.text.toString(), listString, listener)
             }
         }
     }

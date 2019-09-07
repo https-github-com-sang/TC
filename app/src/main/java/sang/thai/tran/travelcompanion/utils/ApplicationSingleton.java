@@ -1,6 +1,7 @@
 package sang.thai.tran.travelcompanion.utils;
 
 import sang.thai.tran.travelcompanion.model.Data;
+import sang.thai.tran.travelcompanion.model.ProfessionalRecordsInfoModel;
 import sang.thai.tran.travelcompanion.model.RegisterModel;
 import sang.thai.tran.travelcompanion.model.UserInfo;
 
@@ -74,4 +75,13 @@ public class ApplicationSingleton {
         this.data = registerModel;
     }
 
+    public ProfessionalRecordsInfoModel getProfessionalRecordsInfoModel() {
+        return professionalRecordsInfoModel;
+    }
+
+    public void setProfessionalRecordsInfoModel(ProfessionalRecordsInfoModel professionalRecordsInfoModel) {
+        this.professionalRecordsInfoModel = professionalRecordsInfoModel;
+    }
+
+    private ProfessionalRecordsInfoModel professionalRecordsInfoModel;
 }

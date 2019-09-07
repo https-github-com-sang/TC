@@ -1,8 +1,9 @@
 package sang.thai.tran.travelcompanion.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-open class BaseModel {
+open class BaseModel : Serializable {
     @SerializedName("Text")
     var text_1: String? = null
         internal set

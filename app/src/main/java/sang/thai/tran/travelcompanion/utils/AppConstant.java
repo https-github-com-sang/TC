@@ -40,12 +40,12 @@ public class AppConstant {
 
     public static final String API_TAKE_THE_JOB = "api/receiver/takeTheJob";
     public static final String API_TAKE_THE_ON_FLIGHT_JOB = "/api/receiver/takeTheOnFlightJob";
+    public static final String API_UPDATE_PROFESSIONAL_INFO = "/api/receiver/updateProfessionalRecordsInfo";
 
 //    public static final String API_TAKE_THE_ON_FLIGHT_JOB = "/api/receiver/takeTheOnFlightJob";
     public static final String API_GET_PROFESSIONAL_RECORD = "/api/SelectList/getProfessionalRecords";
     public static final String API_PARAM_MODEL = "model";
     public static final String API_PARAM_ACCESS_TOKEN = "accessToken";
-
     public static final String CURRENT_LANGUAGE = "current_language";
 
 

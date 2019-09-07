@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.layout_back_next.*
 import kotlinx.android.synthetic.main.layout_base_medical_certificate.*
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.MainActivity
+import sang.thai.tran.travelcompanion.model.ProfessionalRecordsInfoModel
 import sang.thai.tran.travelcompanion.model.Response
 import sang.thai.tran.travelcompanion.retrofit.BaseObserver
 import sang.thai.tran.travelcompanion.retrofit.HttpRetrofitClientBase
@@ -18,6 +19,7 @@ import sang.thai.tran.travelcompanion.utils.AppConstant
 import sang.thai.tran.travelcompanion.utils.AppConstant.API_GET_PROFESSIONAL_RECORD
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
 import sang.thai.tran.travelcompanion.utils.DialogUtils
+import sang.thai.tran.travelcompanion.interfaces.ResultMultiChoiceDialog as ResultMultiChoiceDialog1
 
 
 class RegisterWellCompanionFragment : BaseFragment() {
@@ -41,6 +43,9 @@ class RegisterWellCompanionFragment : BaseFragment() {
             controlMedicalCertificationUI(b)
         }
 
+        if (ApplicationSingleton.getInstance().professionalRecordsInfoModel == null) {
+            ApplicationSingleton.getInstance().professionalRecordsInfoModel = ProfessionalRecordsInfoModel()
+        }
     }
 
     //    GET /api/SelectList/getProfessionalRecords
@@ -59,9 +64,30 @@ class RegisterWellCompanionFragment : BaseFragment() {
                     ApplicationSingleton.getInstance().data = result.result?.data
 
                     activity?.runOnUiThread {
-                        setOnClickAndShowDialog(tv_professional_qualification, ApplicationSingleton.getInstance().data.degreesList!!)
-                        setOnClickAndShowDialog(tv_specialized, ApplicationSingleton.getInstance().data.qualificationList!!)
-                        setOnClickAndShowDialog(tv_communication_level, ApplicationSingleton.getInstance().data.communicationSkillsList!!)
+                        if (tv_professional_qualification != null)
+                        setOnClickAndShowDialog(
+                                tv_professional_qualification,
+                                ApplicationSingleton.getInstance().data.degreesList!!,
+                                object : ResultMultiChoiceDialog1 {
+                                    override fun getListSelectedItem(list: List<String>) {
+                                        ApplicationSingleton.getInstance().professionalRecordsInfoModel?.professional_Degree_List = list
+                                    }
+                                }
+                        )
+                        if (tv_specialized != null)
+                        setOnClickAndShowDialog(tv_specialized, ApplicationSingleton.getInstance().data.qualificationList!!,
+                                object : ResultMultiChoiceDialog1 {
+                                    override fun getListSelectedItem(list: List<String>) {
+                                        ApplicationSingleton.getInstance().professionalRecordsInfoModel?.qualification_List = list
+                                    }
+                                })
+                        if (tv_communication_level != null)
+                        setOnClickAndShowDialog(tv_communication_level, ApplicationSingleton.getInstance().data.communicationSkillsList!!,
+                                object : ResultMultiChoiceDialog1 {
+                                    override fun getListSelectedItem(list: List<String>) {
+                                        ApplicationSingleton.getInstance().professionalRecordsInfoModel?.communication_Skills = list.get(0)
+                                    }
+                                })
                     }
                 } else {
                     activity?.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
