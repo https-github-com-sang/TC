@@ -247,7 +247,7 @@ Email: tuyendung.travelwest@gmail.com</string>
 
     <string name="label_work">Danh sách công việc</string>
     <string name="label_profile">Thông tin cá nhân</string>
-    <string name="label_free_time_in_week">Thời gian rãnh:</string>
+    <string name="label_free_time_in_week">Thời gian làm việc:</string>
     <string name="label_start_time">Thời gian bắt đầu: </string>
     <string name="label_support_place">Địa điểm đăng ký trợ giúp: </string>
     <string name="label_work_experience">Kinh nghiệm làm việc</string>
@@ -262,4 +262,12 @@ Email: tuyendung.travelwest@gmail.com</string>
     <string name="label_need_requester">Đăng ký cần trợ giúp </string>
 
     <string name="label_register_object">Đối tượng tham gia: </string>
+    <string name="string_label_to_time">Giờ đến: </string>
+    <string name="label_medical_certificate">Bạn có chứng chỉ  sơ cấp cứu căn bản? </string>
+    <string name="label_join_medical_certificate">Tham gia khóa học chứng chỉ y tế cơ bản? </string>
+    <string name="label_join_medical_certificate_description">(Người đăng ký trợ giúp chuyên môn nếu không được đào tạo trong các lĩnh vực liên quan đến y tế và làm việc trong các ngành nghề khác bắt buộc phải có chứng chỉ Sơ cấp cứu căn bản. Ứng viên có thể đăng ký tham gia huấn luyện thông qua TC, thời gian khóa học thông thường là 01 ngày)</string>
+    <string name="label_yes">Có</string>
+    <string name="label_no">Không</string>
+    <string name="label_working_place">Nơi làm việc/ Trường :</string>
+    <string name="label_position">Chức vụ:</string>
 </resources>

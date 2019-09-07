@@ -122,12 +122,6 @@ open class BaseActivity : AppCompatActivity() {
 //            //            EventBus.getDefault().post(new MessageEvent());
 //        }
         LocaleHelper.setLocale(this, lang)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            recreate();
-//            //            EventBus.getDefault().post(new MessageEvent());
-        } else {
-
-        }
         val refresh = Intent(this, getChildClass)
         refresh.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(refresh)

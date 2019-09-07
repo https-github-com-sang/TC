@@ -42,17 +42,31 @@
                 style="@style/Tv_Package_service_drop_down"
                 android:text="@string/label_free_time_in_week"/>
 
-            <TextView
-                android:id="@+id/tv_register_free"
-                android:layout_marginTop="@dimen/_5sdp"
-                style="@style/Tv_Package_service_drop_down"
-                android:text="khung gio"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_work_time_list"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_height="wrap_content" />
 
-            <TextView
-                android:id="@+id/tv_register_start_time"
-                android:layout_marginTop="@dimen/_5sdp"
-                style="@style/Tv_Package_service_drop_down"
-                android:text="@string/label_start_time"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                    android:id="@+id/et_from"
+                    style="@style/Info_Input"
+                    custom:isGreen="true"
+                    custom:text="@string/label_start_time" />
+
+                <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                    android:id="@+id/et_to"
+                    style="@style/Info_Input"
+                    custom:isGreen="true"
+                    custom:text="@string/string_label_to_time" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_register_support_place"

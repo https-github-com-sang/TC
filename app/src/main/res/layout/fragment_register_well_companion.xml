@@ -29,16 +29,6 @@
                 android:background="@drawable/bg_green_border_gray_filled_rounded_corner"
                 android:text="@string/label_professional_qualification_title" />
 
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="@dimen/_10sdp"-->
-            <!--                android:layout_marginTop="@dimen/_5sdp"-->
-            <!--                android:background="@drawable/bg_green_border_white_filled_rounded_corner"-->
-            <!--                android:orientation="horizontal">-->
-
-            <!--            </LinearLayout>-->
-
             <TextView
                 android:id="@+id/tv_professional_qualification"
                 style="@style/Tv_Package_service_drop_down"
@@ -52,17 +42,25 @@
                 android:text="@string/label_specialized" />
 
             <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                android:id="@+id/et_other_specialized"
                 style="@style/Info_Input"
                 custom:isGreen="true"
-                custom:text="Chuyên ngành khác" />
+                custom:text="@string/label_other_specialized" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_foreign_language"-->
+<!--                style="@style/Tv_Package_service_drop_down"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:text="@string/label_foreign_language" />-->
+
+            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                style="@style/Info_Input"
+                android:id="@+id/et_foreign_language"
+                custom:isGreen="true"
+                custom:text="@string/label_foreign_language" />
 
             <TextView
-                android:id="@+id/tv_foreign_language"
-                style="@style/Tv_Package_service_drop_down"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:text="@string/label_foreign_language" />
-
-            <TextView
+                android:id="@+id/tv_communication_level"
                 style="@style/Tv_Package_service_drop_down"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_5sdp"
@@ -88,12 +86,14 @@
             <sang.thai.tran.travelcompanion.view.EditTextViewLayout
                 style="@style/Info_Input"
                 custom:isGreen="true"
-                custom:text="Nơi làm việc/ Trường :" />
+                custom:text="@string/label_working_place" />
 
             <sang.thai.tran.travelcompanion.view.EditTextViewLayout
                 style="@style/Info_Input"
                 custom:isGreen="true"
-                custom:text="Chức vụ:" />
+                custom:text="@string/label_position" />
+
+            <include layout="@layout/layout_base_medical_certificate" />
 
             <include layout="@layout/layout_back_next" />
         </LinearLayout>

@@ -243,7 +243,7 @@ Email: tuyendung.travelwest@gmail.com</string>
     <string name="label_logout">Logout</string>
     <string name="label_work">Work</string>
     <string name="label_profile">Profile</string>
-    <string name="label_free_time_in_week">Free time:</string>
+    <string name="label_free_time_in_week">Work time:</string>
     <string name="label_start_time">Start time:</string>
     <string name="label_support_place">Location assistance: </string>
     <string name="label_work_experience">Work experience</string>
@@ -254,6 +254,13 @@ Email: tuyendung.travelwest@gmail.com</string>
     <string name="label_other_specialized">Other Specialized:</string>
     <string name="label_foreign_language">Foreign language:</string>
     <string name="label_communication_skills">Communication skill: </string>
-
+    <string name="label_medical_certificate">Do you have basic medical certificate? </string>
     <string name="label_need_requester">Well Trained Companion Requester</string>
+    <string name="string_label_to_time">To time:</string>
+    <string name="label_join_medical_certificate">Join basic medical certificate course? </string>
+    <string name="label_join_medical_certificate_description">(Người đăng ký trợ giúp chuyên môn nếu không được đào tạo trong các lĩnh vực liên quan đến y tế và làm việc trong các ngành nghề khác bắt buộc phải có chứng chỉ Sơ cấp cứu căn bản. Ứng viên có thể đăng ký tham gia huấn luyện thông qua TC, thời gian khóa học thông thường là 01 ngày)</string>
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+    <string name="label_working_place">Working place/ School :</string>
+    <string name="label_position">Position:</string>
 </resources>

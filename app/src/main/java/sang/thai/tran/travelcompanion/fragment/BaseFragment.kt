@@ -15,20 +15,20 @@ import com.nj.imagepicker.ImagePicker
 import com.nj.imagepicker.listener.ImageResultListener
 import com.nj.imagepicker.utils.DialogConfiguration
 import kotlinx.android.synthetic.main.fragment_register_guide.*
+import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
 import sang.thai.tran.travelcompanion.BuildConfig
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.MainActivity
+import sang.thai.tran.travelcompanion.model.BaseModel
 import sang.thai.tran.travelcompanion.model.RegisterModel
 import sang.thai.tran.travelcompanion.model.Response
 import sang.thai.tran.travelcompanion.model.UserInfo
 import sang.thai.tran.travelcompanion.retrofit.BaseObserver
 import sang.thai.tran.travelcompanion.retrofit.HttpRetrofitClientBase
+import sang.thai.tran.travelcompanion.utils.*
 import sang.thai.tran.travelcompanion.utils.AppConstant.*
 import sang.thai.tran.travelcompanion.utils.AppUtils.listToString
-import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
-import sang.thai.tran.travelcompanion.utils.DialogUtils
 import sang.thai.tran.travelcompanion.utils.DialogUtils.onCreateOptionDialog
-import sang.thai.tran.travelcompanion.utils.Log
 import java.util.*
 
 open class BaseFragment : Fragment() {
@@ -183,5 +183,40 @@ open class BaseFragment : Fragment() {
 
     protected fun showWarningDialog(string: Int) {
         DialogUtils.showAlertDialog(activity, getString(string)) { dialog, which -> dialog.dismiss() }
+    }
+
+    protected fun setOnClickAndShowDialog(tv: TextView, list: List<BaseModel>) {
+        tv.requestFocus()
+        tv.setOnClickListener { showDialogList(tv, list) }
+    }
+
+    private fun showDialogList(tv: TextView, list: List<BaseModel>?) {
+        list?.let { it ->
+            val listString = Array(it.size) { "$it" }
+            for (i in it.indices) {
+                if (LocaleHelper.getLanguage(activity).equals("en", ignoreCase = true)) {
+                    listString[i] = it[i].text_2.toString()
+                } else {
+                    listString[i] = it[i].text_1.toString()
+                }
+            }
+            activity?.runOnUiThread {
+                showOptionDialog(tv, tv.text.toString(), listString)
+            }
+        }
+    }
+
+    protected fun openFromTime() {
+        if (activity == null || isMultiClicked()) {
+            return
+        }
+        AppUtils.openTimePicker(activity, et_from)
+    }
+
+    protected fun openToTime() {
+        if (activity == null || isMultiClicked()) {
+            return
+        }
+        AppUtils.openTimePicker(activity, et_to)
     }
 }

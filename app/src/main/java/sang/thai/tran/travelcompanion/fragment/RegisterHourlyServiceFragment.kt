@@ -123,20 +123,6 @@ class RegisterHourlyServiceFragment : BaseFragment() {
         openDatePicker(activity, et_departure_date)
     }
 
-    private fun openFromTime() {
-        if (activity == null || isMultiClicked()) {
-            return
-        }
-        openTimePicker(activity, et_from)
-    }
-
-    private fun openToTime() {
-        if (activity == null || isMultiClicked()) {
-            return
-        }
-        openTimePicker(activity, et_to)
-    }
-
     fun register() {
         if (activity == null) {
             return
