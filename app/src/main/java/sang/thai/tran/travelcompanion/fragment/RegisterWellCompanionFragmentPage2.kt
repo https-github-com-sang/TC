@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import butterknife.OnClick
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
 import kotlinx.android.synthetic.main.fragment_register_well_companion.*
 import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.*
@@ -16,6 +17,7 @@ import sang.thai.tran.travelcompanion.BuildConfig
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.interfaces.ResultMultiChoiceDialog
 import sang.thai.tran.travelcompanion.model.Response
+import sang.thai.tran.travelcompanion.model.WorkingTime
 import sang.thai.tran.travelcompanion.retrofit.BaseObserver
 import sang.thai.tran.travelcompanion.retrofit.HttpRetrofitClientBase
 import sang.thai.tran.travelcompanion.utils.AppConstant
@@ -87,8 +89,18 @@ class RegisterWellCompanionFragmentPage2 : BaseFragment() {
             showWarningDialog(R.string.label_input_info)
             return
         }
+        val monday = WorkingTime()
+        monday.day = "t2"
+        monday.fromTime = et_from.text
+        monday.toTime = et_to.text
+        val sunday = WorkingTime()
+        sunday.day = "cn"
+        sunday.fromTime = et_from.text
+        sunday.toTime = et_to.text
+        ApplicationSingleton.getInstance().professionalRecordsInfoModel.workingTimes?.add(monday)
+        ApplicationSingleton.getInstance().professionalRecordsInfoModel.workingTimes?.add(sunday)
         if (BuildConfig.DEBUG) {
-            Log.d("Sang","")
+            Log.d("Sang", "professionalRecordsInfoModel: ${Gson().toJson(ApplicationSingleton.getInstance().professionalRecordsInfoModel)}")
         }
         HttpRetrofitClientBase.getInstance().executeProfessionalRecord(API_UPDATE_PROFESSIONAL_INFO,
                 ApplicationSingleton.getInstance().token, ApplicationSingleton.getInstance().professionalRecordsInfoModel, object : BaseObserver<Response>(true) {
@@ -132,7 +144,7 @@ class RegisterWellCompanionFragmentPage2 : BaseFragment() {
             return false
         }
 
-        if (activity?.getText(R.string.label_free_time_in_week)!! == tv_specialized.tv_register_free_time) {
+        if (activity?.getText(R.string.label_free_time_in_week)!! == tv_register_free_time.text) {
             return false
         }
 

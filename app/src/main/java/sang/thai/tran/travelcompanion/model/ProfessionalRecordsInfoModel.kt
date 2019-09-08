@@ -1,6 +1,7 @@
 package sang.thai.tran.travelcompanion.model
 
 import com.google.gson.annotations.SerializedName
+import java.util.ArrayList
 
 class ProfessionalRecordsInfoModel : BaseModel() {
 
@@ -17,7 +18,7 @@ class ProfessionalRecordsInfoModel : BaseModel() {
      var subject_Qualification_List: List<String>? = null
 
     @SerializedName("WorkingTimes")
-     var workingTimes: List<WorkingTime>? = null
+     var workingTimes: MutableList<WorkingTime>? = mutableListOf()
 
     @SerializedName("Qualification_Business")
      var qualification_Business : String? = null
@@ -48,7 +49,5 @@ class ProfessionalRecordsInfoModel : BaseModel() {
 
     @SerializedName("Times_Type_Qualification")
      var times_Type_Qualification : String? = null
-
-
 
 }
