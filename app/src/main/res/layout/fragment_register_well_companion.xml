@@ -84,11 +84,13 @@
                 />
 
             <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                android:id="@+id/et_working_place"
                 style="@style/Info_Input"
                 custom:isGreen="true"
                 custom:text="@string/label_working_place" />
 
             <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                android:id="@+id/et_working_position"
                 style="@style/Info_Input"
                 custom:isGreen="true"
                 custom:text="@string/label_position" />

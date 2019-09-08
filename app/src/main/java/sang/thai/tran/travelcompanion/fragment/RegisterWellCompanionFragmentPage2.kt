@@ -9,7 +9,10 @@ import kotlinx.android.synthetic.main.fragment_register_well_companion.*
 import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.*
 import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.et_from
 import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.et_to
+import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.view.*
 import kotlinx.android.synthetic.main.layout_back_next.*
+import kotlinx.android.synthetic.main.layout_base_medical_certificate.*
+import sang.thai.tran.travelcompanion.BuildConfig
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.interfaces.ResultMultiChoiceDialog
 import sang.thai.tran.travelcompanion.model.Response
@@ -19,6 +22,7 @@ import sang.thai.tran.travelcompanion.utils.AppConstant
 import sang.thai.tran.travelcompanion.utils.AppConstant.API_UPDATE_PROFESSIONAL_INFO
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
 import sang.thai.tran.travelcompanion.utils.DialogUtils
+import sang.thai.tran.travelcompanion.utils.Log
 
 class RegisterWellCompanionFragmentPage2 : BaseFragment() {
 
@@ -76,7 +80,15 @@ class RegisterWellCompanionFragmentPage2 : BaseFragment() {
     @OnClick(R.id.email_sign_in_button)
     internal fun openDepartureDate() {
         if (activity == null || ApplicationSingleton.getInstance().professionalRecordsInfoModel == null) {
+            showWarningDialog(R.string.label_input_info)
             return
+        }
+        if (!checkConditionToNext()) {
+            showWarningDialog(R.string.label_input_info)
+            return
+        }
+        if (BuildConfig.DEBUG) {
+            Log.d("Sang","")
         }
         HttpRetrofitClientBase.getInstance().executeProfessionalRecord(API_UPDATE_PROFESSIONAL_INFO,
                 ApplicationSingleton.getInstance().token, ApplicationSingleton.getInstance().professionalRecordsInfoModel, object : BaseObserver<Response>(true) {
@@ -113,6 +125,30 @@ class RegisterWellCompanionFragmentPage2 : BaseFragment() {
                 }
             }
         })
+    }
+
+    private fun checkConditionToNext(): Boolean {
+        if (activity?.getText(R.string.label_for)!! == tv_register_for.text) {
+            return false
+        }
+
+        if (activity?.getText(R.string.label_free_time_in_week)!! == tv_specialized.tv_register_free_time) {
+            return false
+        }
+
+        if (et_from.visibility == View.VISIBLE && TextUtils.isEmpty(et_from.text)) {
+            return false
+        }
+
+        if (et_to.visibility == View.VISIBLE && TextUtils.isEmpty(et_to.text)) {
+            return false
+        }
+
+        if (activity?.getText(R.string.label_support_place)!! == tv_register_support_place.text) {
+            return false
+        }
+
+        return true
     }
 
     companion object {
