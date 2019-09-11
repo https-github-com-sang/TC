@@ -6,12 +6,16 @@ import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
+import kotlinx.android.synthetic.main.fragment_register_hourly_service.et_from
+import kotlinx.android.synthetic.main.fragment_register_hourly_service.et_to
+import kotlinx.android.synthetic.main.fragment_register_hourly_service.ll_parent
+import kotlinx.android.synthetic.main.fragment_register_well_companion_page_2.*
 import kotlinx.android.synthetic.main.layout_back_next.*
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.BaseActivity
 import sang.thai.tran.travelcompanion.activity.MainActivity
+import sang.thai.tran.travelcompanion.interfaces.ResultMultiChoiceDialog
 import sang.thai.tran.travelcompanion.model.RegisterModel
 import sang.thai.tran.travelcompanion.model.Response
 import sang.thai.tran.travelcompanion.retrofit.BaseObserver
@@ -19,7 +23,6 @@ import sang.thai.tran.travelcompanion.retrofit.HttpRetrofitClientBase
 import sang.thai.tran.travelcompanion.utils.AppConstant
 import sang.thai.tran.travelcompanion.utils.AppConstant.*
 import sang.thai.tran.travelcompanion.utils.AppUtils.openDatePicker
-import sang.thai.tran.travelcompanion.utils.AppUtils.openTimePicker
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
 import sang.thai.tran.travelcompanion.utils.DialogUtils
 import sang.thai.tran.travelcompanion.utils.Log
@@ -63,8 +66,14 @@ class RegisterHourlyServiceFragment : BaseFragment() {
             //            openDepartureDate()
             createRegisterFlight()
             (activity as BaseActivity).onBackPressed()
-
         }
+        if (tv_register_object != null && ApplicationSingleton.getInstance().data.helperSubjectQualificationList != null)
+            setOnClickAndShowDialog(tv_register_object, ApplicationSingleton.getInstance().data.helperSubjectQualificationList!!,
+                    object : ResultMultiChoiceDialog {
+                        override fun getListSelectedItem(list: List<String>) {
+                            ApplicationSingleton.getInstance().professionalRecordsInfoModel?.subject_Qualification_List = list
+                        }
+                    })
     }
 
     override fun getApiUrl(): String {

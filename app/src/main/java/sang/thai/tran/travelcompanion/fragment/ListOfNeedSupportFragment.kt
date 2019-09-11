@@ -1,5 +1,6 @@
 package sang.thai.tran.travelcompanion.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -11,6 +12,7 @@ import kotlinx.android.synthetic.main.fragment_forgot_pass.*
 import kotlinx.android.synthetic.main.fragment_need_suport_list.*
 import kotlinx.android.synthetic.main.fragment_register_flight.*
 import sang.thai.tran.travelcompanion.R
+import sang.thai.tran.travelcompanion.activity.LoginActivity
 import sang.thai.tran.travelcompanion.activity.MainActivity
 import sang.thai.tran.travelcompanion.adapter.NeedSupportAdapter
 import sang.thai.tran.travelcompanion.model.FlightJobModel
@@ -84,15 +86,15 @@ open class ListOfNeedSupportFragment : BaseFragment() {
         when (ApplicationSingleton.getInstance().userType) {
             SUPPORT_COMPANION -> {
                 isOnFlight = true
-                filterInfoList = locationInfoList.filter { TYPE_ON_FLIGHT.equals(it.type) }
+                filterInfoList = locationInfoList.filter { TYPE_ON_FLIGHT == it.type }
             }
             SUPPORT_COMPANION_GUIDE -> {
                 isOnFlight = false
-                filterInfoList = locationInfoList.filter { TYPE_GUIDES_TO_PLACES.equals(it.type) }
+                filterInfoList = locationInfoList.filter { TYPE_GUIDES_TO_PLACES == it.type }
             }
             SUPPORT_COMPANION_WELL -> {
                 isOnFlight = false
-                filterInfoList = locationInfoList.filter { TYPE_WELL_TRAINED_HELPS.equals(it.type) }
+                filterInfoList = locationInfoList.filter { TYPE_WELL_TRAINED_HELPS == it.type }
             }
         }
         rv_need_support_list.visibility = View.VISIBLE
@@ -142,8 +144,8 @@ open class ListOfNeedSupportFragment : BaseFragment() {
             return
         }
         val data = HashMap<String, String>()
-        data["accessToken"] = ApplicationSingleton.getInstance().token
         data["jobCode"] = itemOptionModel.code
+        data["accessToken"] = ApplicationSingleton.getInstance().token
         showProgressDialog()
         HttpRetrofitClientBase.getInstance().executePost(API_TAKE_THE_JOB,
                 data, object : BaseObserver<Response>(true) {
@@ -164,7 +166,15 @@ open class ListOfNeedSupportFragment : BaseFragment() {
             override fun onFailure(e: Throwable, errorMsg: String) {
                 hideProgressDialog()
                 if (!TextUtils.isEmpty(errorMsg)) {
-                    activity?.runOnUiThread { DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ -> dialog.dismiss() } }
+                    activity?.runOnUiThread {
+                        DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ ->
+                            run {
+                                dialog.dismiss()
+                                startActivity(Intent(activity, LoginActivity::class.java))
+                                activity?.finish()
+                            }
+                        }
+                    }
                 }
             }
         })

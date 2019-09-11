@@ -5,13 +5,21 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.fragment_register_flight_need.*
+import kotlinx.android.synthetic.main.fragment_register_flight_need.et_departure_date
+import kotlinx.android.synthetic.main.fragment_register_flight_need.ll_parent
+import kotlinx.android.synthetic.main.fragment_register_flight_need.tv_register_service_more
+import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
 import kotlinx.android.synthetic.main.layout_back_next.*
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.BaseActivity
 import sang.thai.tran.travelcompanion.activity.MainActivity
 import sang.thai.tran.travelcompanion.model.RegisterModel
+import sang.thai.tran.travelcompanion.model.Response
+import sang.thai.tran.travelcompanion.retrofit.BaseObserver
+import sang.thai.tran.travelcompanion.retrofit.HttpRetrofitClientBase
 import sang.thai.tran.travelcompanion.utils.AppConstant
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
+import sang.thai.tran.travelcompanion.utils.DialogUtils
 import sang.thai.tran.travelcompanion.view.EditTextViewLayout
 
 
@@ -23,6 +31,7 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
 
         btn_next.setOnClickListener {
             executeRegister()
+            getProfessionalRecords(AppConstant.API_GET_PROFESSIONAL_RECORD)
         }
 
         btn_back.setOnClickListener {
@@ -31,6 +40,40 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
         }
 
         fillData()
+    }
+
+    //    GET /api/SelectList/getProfessionalRecords
+    private fun getProfessionalRecords(url: String) {
+        if (activity == null || isMultiClicked()) {
+            return
+        }
+        HttpRetrofitClientBase.getInstance().executeGet(url,
+                ApplicationSingleton.getInstance().token, object : BaseObserver<Response>(true) {
+            override fun onSuccess(result: Response, response: String) {
+                hideProgressDialog()
+                if (activity == null) {
+                    return
+                }
+                if (result.statusCode == AppConstant.SUCCESS_CODE) {
+                    ApplicationSingleton.getInstance().data = result.result?.data
+
+                    activity?.runOnUiThread {
+                        //                        showMultiChoiceDialog()
+                    }
+                } else {
+                    activity?.runOnUiThread { DialogUtils.showAlertDialog(activity, result.message) { dialog, _ -> dialog.dismiss() } }
+                }
+            }
+
+            override fun onFailure(e: Throwable, errorMsg: String) {
+                hideProgressDialog()
+                if (!TextUtils.isEmpty(errorMsg)) {
+                    activity?.runOnUiThread { DialogUtils.showAlertDialog(activity, errorMsg) { dialog, _ -> dialog.dismiss() } }
+                }
+            }
+        })
+        val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(tv_register_service_more?.windowToken, 0)
     }
 
     override fun getApiUrl(): String {
@@ -86,6 +129,7 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
             }
         }
         (activity as MainActivity).registerWell(true)
+
     }
 
     override fun onPause() {

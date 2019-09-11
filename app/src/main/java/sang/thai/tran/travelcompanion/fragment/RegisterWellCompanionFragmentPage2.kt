@@ -62,6 +62,7 @@ class RegisterWellCompanionFragmentPage2 : BaseFragment() {
                         ApplicationSingleton.getInstance().professionalRecordsInfoModel?.subject_Qualification_List = list
                     }
                 })
+
         setOnClickAndShowDialog(tv_register_free_time, ApplicationSingleton.getInstance().data.timesTypeQualificationList!!,
                 object : ResultMultiChoiceDialog {
                     override fun getListSelectedItem(list: List<String>) {
@@ -76,11 +77,7 @@ class RegisterWellCompanionFragmentPage2 : BaseFragment() {
                 })
     }
 
-    private fun registerObject() {
-    }
-
-    @OnClick(R.id.email_sign_in_button)
-    internal fun openDepartureDate() {
+    private fun openDepartureDate() {
         if (activity == null || ApplicationSingleton.getInstance().professionalRecordsInfoModel == null) {
             showWarningDialog(R.string.label_input_info)
             return
@@ -89,16 +86,13 @@ class RegisterWellCompanionFragmentPage2 : BaseFragment() {
             showWarningDialog(R.string.label_input_info)
             return
         }
-        val monday = WorkingTime()
-        monday.day = "t2"
-        monday.fromTime = et_from.text
-        monday.toTime = et_to.text
-        val sunday = WorkingTime()
-        sunday.day = "cn"
-        sunday.fromTime = et_from.text
-        sunday.toTime = et_to.text
-        ApplicationSingleton.getInstance().professionalRecordsInfoModel.workingTimes?.add(monday)
-        ApplicationSingleton.getInstance().professionalRecordsInfoModel.workingTimes?.add(sunday)
+        for (i in 0 until 7) {
+            val day = WorkingTime()
+            day.day = i.toString()
+            day.fromTime = et_from.text
+            day.toTime = et_to.text
+            ApplicationSingleton.getInstance().professionalRecordsInfoModel.workingTimes?.add(day)
+        }
         if (BuildConfig.DEBUG) {
             Log.d("Sang", "professionalRecordsInfoModel: ${Gson().toJson(ApplicationSingleton.getInstance().professionalRecordsInfoModel)}")
         }
@@ -121,8 +115,6 @@ class RegisterWellCompanionFragmentPage2 : BaseFragment() {
                             }
 
                             activity?.onBackPressed()
-//                            activity?.supportFragmentManager?.popBackStack()
-//                            activity?.supportFragmentManager?.popBackStack()
                         }
                     } }
                 } else {
