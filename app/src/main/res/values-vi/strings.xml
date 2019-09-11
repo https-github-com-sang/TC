@@ -164,7 +164,7 @@
 
     <string name="label_destination_place">Các nơi sẽ đến: </string>
 
-    <string name="label_for">Đói tượng</string>
+    <string name="label_for">Đối tượng</string>
     <string-array name="register_for_list">
         <item>Người cao tuổi</item><!--0-->
         <item> Trẻ em</item>
