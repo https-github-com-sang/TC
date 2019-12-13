@@ -67,7 +67,9 @@ class RegisterHourlyServiceFragment : BaseFragment() {
             createRegisterFlight()
             (activity as BaseActivity).onBackPressed()
         }
-        if (tv_register_object != null && ApplicationSingleton.getInstance().data.helperSubjectQualificationList != null)
+        if (tv_register_object != null &&
+                ApplicationSingleton.getInstance().data != null &&
+                ApplicationSingleton.getInstance().data.helperSubjectQualificationList != null)
             setOnClickAndShowDialog(tv_register_object, ApplicationSingleton.getInstance().data.helperSubjectQualificationList!!,
                     object : ResultMultiChoiceDialog {
                         override fun getListSelectedItem(list: List<String>) {

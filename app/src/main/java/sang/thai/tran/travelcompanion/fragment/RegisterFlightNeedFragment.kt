@@ -29,12 +29,12 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        btn_next.setOnClickListener {
+        btn_next?.setOnClickListener {
             executeRegister()
             getProfessionalRecords(AppConstant.API_GET_PROFESSIONAL_RECORD)
         }
 
-        btn_back.setOnClickListener {
+        btn_back?.setOnClickListener {
             createRegisterFlight()
             (activity as BaseActivity).onBackPressed()
         }
@@ -94,7 +94,7 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
             registerModel.disabilityNumber = Integer.valueOf(et_disability_number.text)
     }
 
-    fun fillData() {
+    private fun fillData() {
         val registerModel = ApplicationSingleton.getInstance().registerModel
         if (registerModel != null) {
             if (registerModel.childrenNumber > 0)

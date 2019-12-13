@@ -60,7 +60,8 @@ class DisplayUserInfoFragment : BaseFragment() {
                 }
                 SUPPORT_COMPANION_WELL -> {
                     title = getString(R.string.label_support_well)
-                    //                        title = getResources().getStringArray(R.array.list_item)[2];
+                    tv_list_need_support?.visibility = View.GONE
+                    ll_final_button?.visibility = View.VISIBLE
                     tv_register_flight_or_guide?.text = getString(R.string.label_register_flight_companion_domestic)
                     tv_register_well?.text = getString(R.string.label_register_well_trained_companion)
                     tv_register_flight_or_guide.visibility = View.GONE
@@ -82,9 +83,9 @@ class DisplayUserInfoFragment : BaseFragment() {
                     title = getString(R.string.label_need_support_well)
                     tv_list_need_support?.visibility = View.GONE
                     ll_final_button?.visibility = View.GONE
-                    tv_register_flight_or_guide?.text = getString(R.string.label_need_requester)
-//                    tv_register_well?.text = getString(R.string.label_register_for_hour)
-                    tv_register_well?.visibility = View.GONE
+                    tv_register_flight_or_guide?.text = getString(R.string.label_register_flight_companion)
+                    tv_register_well?.text = getString(R.string.label_register_for_hour)
+                    tv_register_well?.visibility = View.VISIBLE
                 }
             }
         }
@@ -120,7 +121,7 @@ class DisplayUserInfoFragment : BaseFragment() {
             SUPPORT_COMPANION_GUIDE -> (activity as MainActivity).registerGuide(false)
             SUPPORT_COMPANION_WELL -> (activity as MainActivity).registerFlight(false)
             NEED_SUPPORT_COMPANION -> (activity as MainActivity).registerFlight(true)
-            NEED_SUPPORT_COMPANION_GUIDE -> (activity as MainActivity).registerGuide(true)
+            NEED_SUPPORT_COMPANION_GUIDE -> (activity as MainActivity).registerFlight(true)
             NEED_SUPPORT_COMPANION_WELL -> (activity as MainActivity).registerFlight(true)
         }
     }

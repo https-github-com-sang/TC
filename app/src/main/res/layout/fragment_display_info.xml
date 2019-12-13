@@ -88,7 +88,7 @@
                 android:text="@string/label_register_well_trained_companion"/>
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/ll_final_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,11 +96,13 @@
                 android:orientation="horizontal">
 
                 <Space
+                    android:visibility="gone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"/>
 
                 <TextView
+                    android:visibility="gone"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_gravity="center_horizontal"

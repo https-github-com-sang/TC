@@ -30,7 +30,7 @@ import sang.thai.tran.travelcompanion.utils.Log
 import java.util.HashMap
 
 open class ListOfNeedSupportFragment : BaseFragment() {
-    var mPage = 1
+    var mPage = 0
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         showProgressDialog()
