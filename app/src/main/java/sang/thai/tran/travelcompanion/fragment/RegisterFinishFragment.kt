@@ -6,6 +6,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_register_finish.*
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.MainActivity
+import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
 
 
 @Suppress("IMPLICIT_BOXING_IN_IDENTITY_EQUALS")
@@ -17,23 +18,22 @@ class RegisterFinishFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        email_sign_in_button.setOnClickListener { openDepartureDate() }
+        email_sign_in_button.setOnClickListener { clearBackStack() }
         view?.isFocusableInTouchMode = true
         view?.requestFocus()
         view?.setOnKeyListener(pressKeyListener)
-    }
-
-    fun openDepartureDate() {
-        clearBackStack()
     }
 
     private fun clearBackStack() {
         if (activity == null) {
             return
         }
-        val fragmentManager = activity?.getSupportFragmentManager()
+        val fragmentManager = activity?.supportFragmentManager
         while (fragmentManager?.backStackEntryCount!! > 1) {
-            fragmentManager?.popBackStackImmediate()
+            fragmentManager.popBackStackImmediate()
+        }
+        if (ApplicationSingleton.getInstance()?.userInfo?.type == "receiver") {
+            activity?.onBackPressed()
         }
     }
 
@@ -43,7 +43,7 @@ class RegisterFinishFragment : BaseFragment() {
                 if (event.action == KeyEvent.ACTION_UP) {
 //                    return true
                 }
-                openDepartureDate()
+                clearBackStack()
                 return true
             }
             return false

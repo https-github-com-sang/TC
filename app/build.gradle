@@ -44,7 +44,6 @@ android {
     }
     flavorDimensions "version"
     productFlavors {
-        def DOMAIN_FIELD = "DOMAIN_FIELD"
         def DOMAIN_URL = "DOMAIN_URL"
         t_c {
             buildConfigField "String", DOMAIN_URL, "\"http://donghanhchuyendi.com\""

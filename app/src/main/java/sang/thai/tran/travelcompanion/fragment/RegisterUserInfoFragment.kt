@@ -15,17 +15,13 @@ import android.view.View
 import android.widget.TextView
 import androidx.annotation.NonNull
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.core.content.ContextCompat.getColor
 import com.bumptech.glide.Glide
 import com.countrypicker.CountryPicker
 import com.google.gson.Gson
 import com.nj.imagepicker.ImagePicker
 import com.nj.imagepicker.listener.ImageResultListener
 import com.nj.imagepicker.utils.DialogConfiguration
-import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_register_user_info.*
-import kotlinx.android.synthetic.main.fragment_register_user_info.email_sign_in_button
-import kotlinx.android.synthetic.main.fragment_register_user_info.et_phone
 import sang.thai.tran.travelcompanion.BuildConfig
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.LoginActivity
@@ -41,6 +37,7 @@ import sang.thai.tran.travelcompanion.utils.DialogUtils
 import sang.thai.tran.travelcompanion.utils.DialogUtils.onCreateSingleChoiceDialog
 import sang.thai.tran.travelcompanion.utils.DialogUtils.showTermOfService
 import sang.thai.tran.travelcompanion.view.EditTextViewLayout
+import java.util.*
 
 
 class RegisterUserInfoFragment : BaseFragment() {
@@ -52,11 +49,11 @@ class RegisterUserInfoFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         updateData()
         if (update) {
-            email_sign_in_button.setText(getString(R.string.label_update))
+            email_sign_in_button.text = getString(R.string.label_update)
             tv_terms_of_service.visibility = View.GONE
             ll_check_box.visibility = View.GONE
         } else {
-            email_sign_in_button.setText(getString(R.string.label_register))
+            email_sign_in_button.text = getString(R.string.label_register)
         }
         email_sign_in_button.setOnClickListener { executeRegister() }
         et_nationality.editText.onFocusChangeListener = View.OnFocusChangeListener { _, hasFocus ->
@@ -211,9 +208,9 @@ class RegisterUserInfoFragment : BaseFragment() {
         var countryZipCode = ""
 
         //getNetworkCountryIso
-        var countryID = tm.simCountryIso.toUpperCase()
+        var countryID = tm.simCountryIso.toUpperCase(Locale.US)
         if (TextUtils.isEmpty(countryID)) {
-            countryID = countryCode.toUpperCase()
+            countryID = countryCode.toUpperCase(Locale.US)
         }
         val rl = activity?.resources?.getStringArray(R.array.CountryCodes)
         for (i in 0 until rl?.size!!) {

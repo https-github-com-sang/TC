@@ -103,15 +103,14 @@
                 custom:isGreen="true"
                 custom:text="@string/label_arrival_airport"/>
 
-            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
-                style="@style/Info_Input"
+            <TextView
                 android:layout_marginTop="@dimen/_10sdp"
-                custom:isGreen="true"
-                custom:inputType="3"
-                custom:text="@string/label_number_people"/>
+                style="@style/Tv_Package_service"
+                android:text="@string/label_number_people"/>
 
             <sang.thai.tran.travelcompanion.view.EditTextViewLayout
                 style="@style/Info_Input"
+                android:id="@+id/et_kid_number"
                 android:layout_marginStart="@dimen/_30sdp"
                 custom:isGreen="true"
                 custom:inputType="3"
@@ -119,10 +118,37 @@
 
             <sang.thai.tran.travelcompanion.view.EditTextViewLayout
                 style="@style/Info_Input"
+                android:id="@+id/et_elders_number"
                 android:layout_marginStart="@dimen/_30sdp"
                 custom:isGreen="true"
                 custom:inputType="3"
                 custom:text="@string/label_elder"/>
+
+
+            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                style="@style/Info_Input"
+                android:id="@+id/et_disability_number"
+                android:layout_marginStart="@dimen/_30sdp"
+                custom:isGreen="true"
+                custom:inputType="3"
+                custom:text="@string/label_disability_number"/>
+
+
+            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                style="@style/Info_Input"
+                android:id="@+id/et_pregnant_number"
+                android:layout_marginStart="@dimen/_30sdp"
+                custom:isGreen="true"
+                custom:inputType="3"
+                custom:text="@string/label_pregnant_number"/>
+
+            <sang.thai.tran.travelcompanion.view.EditTextViewLayout
+                style="@style/Info_Input"
+                android:id="@+id/et_middle_number"
+                android:layout_marginStart="@dimen/_30sdp"
+                custom:isGreen="true"
+                custom:inputType="3"
+                custom:text="@string/label_middle_number"/>
 
             <TextView
                 android:id="@+id/tv_register_service"

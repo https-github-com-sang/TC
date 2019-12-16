@@ -6,9 +6,6 @@ import android.text.TextUtils
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.OnClick
-import kotlinx.android.synthetic.main.fragment_display_info.*
-import kotlinx.android.synthetic.main.fragment_display_info.et_email
-import kotlinx.android.synthetic.main.fragment_forgot_pass.*
 import kotlinx.android.synthetic.main.fragment_need_suport_list.*
 import kotlinx.android.synthetic.main.fragment_register_flight.*
 import sang.thai.tran.travelcompanion.R
@@ -27,10 +24,10 @@ import sang.thai.tran.travelcompanion.utils.AppUtils.openTimePicker
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
 import sang.thai.tran.travelcompanion.utils.DialogUtils
 import sang.thai.tran.travelcompanion.utils.Log
-import java.util.HashMap
+import java.util.*
 
 open class ListOfNeedSupportFragment : BaseFragment() {
-    var mPage = 0
+    var mPage = 1
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         showProgressDialog()

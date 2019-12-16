@@ -1,5 +1,6 @@
 package sang.thai.tran.travelcompanion.utils;
 
+import sang.thai.tran.travelcompanion.BuildConfig;
 import sang.thai.tran.travelcompanion.model.Data;
 import sang.thai.tran.travelcompanion.model.ProfessionalRecordsInfoModel;
 import sang.thai.tran.travelcompanion.model.RegisterModel;
@@ -20,7 +21,9 @@ public class ApplicationSingleton {
 
     private UserInfo mUserInfo;
 
-
+    public boolean isGTN() {
+        return BuildConfig.APPLICATION_ID.equals("sang.thai.tran.gtn");
+    }
     public UserInfo getUserInfo() {
         return mUserInfo;
     }

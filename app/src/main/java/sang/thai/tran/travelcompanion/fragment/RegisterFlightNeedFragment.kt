@@ -4,11 +4,14 @@ import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.inputmethod.InputMethodManager
+import kotlinx.android.synthetic.main.fragment_register_flight.*
 import kotlinx.android.synthetic.main.fragment_register_flight_need.*
+import kotlinx.android.synthetic.main.fragment_register_flight_need.et_airline
 import kotlinx.android.synthetic.main.fragment_register_flight_need.et_departure_date
+import kotlinx.android.synthetic.main.fragment_register_flight_need.et_departure_hour
+import kotlinx.android.synthetic.main.fragment_register_flight_need.et_flight_number
 import kotlinx.android.synthetic.main.fragment_register_flight_need.ll_parent
 import kotlinx.android.synthetic.main.fragment_register_flight_need.tv_register_service_more
-import kotlinx.android.synthetic.main.fragment_register_hourly_service.*
 import kotlinx.android.synthetic.main.layout_back_next.*
 import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.BaseActivity
@@ -30,8 +33,12 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
         super.onActivityCreated(savedInstanceState)
 
         btn_next?.setOnClickListener {
-            executeRegister()
-            getProfessionalRecords(AppConstant.API_GET_PROFESSIONAL_RECORD)
+            if (ApplicationSingleton.getInstance().isGTN) {
+                executeRegister()
+                getProfessionalRecords(AppConstant.GTN_API_GET_PROFESSIONAL_RECORD)
+            } else {
+                registerApi()
+            }
         }
 
         btn_back?.setOnClickListener {
@@ -108,6 +115,23 @@ open class RegisterFlightNeedFragment : RegisterFlightFragment() {
             if (registerModel.disabilityNumber > 0)
                 et_disability_number.text = registerModel.disabilityNumber.toString()
         }
+    }
+
+    override fun createRegisterFlight(): RegisterModel {
+        var registerModel = ApplicationSingleton.getInstance().registerModel
+        if (registerModel == null) {
+            registerModel = RegisterModel()
+        }
+
+        registerModel.departureDateFrom = et_departure_date?.text.toString() + " " + et_departure_hour?.text.toString()
+        registerModel.id = ApplicationSingleton.getInstance().userInfo.code
+        registerModel.airlineOption = et_airline?.text
+        registerModel.flightNumber = et_flight_number?.text
+        registerModel.departureAirport = et_airport_departure?.text
+        registerModel.arrivalAirport = et_arrival_airport?.text
+        addMoreService(registerModel)
+        ApplicationSingleton.getInstance().registerModel = registerModel
+        return registerModel
     }
 
     override fun layoutId(): Int {

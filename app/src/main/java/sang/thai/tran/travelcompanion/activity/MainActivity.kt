@@ -99,7 +99,6 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         replaceFragment(R.id.fl_content, if (isNeed) RegisterHourlyServiceFragment.newInstance() else RegisterWellCompanionFragment.newInstance())
     }
 
-
     fun finishRegister() {
         hideBottomView()
         replaceFragment(R.id.fl_content, RegisterFinishFragment.newInstance(true))

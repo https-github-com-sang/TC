@@ -17,7 +17,7 @@ public class UserInfo extends BaseModel {
     private String Code;
 
     @SerializedName("Postal")
-    private Integer Postal;
+    private String Postal;
 
     @SerializedName("First_Name")
     private String First_Name;

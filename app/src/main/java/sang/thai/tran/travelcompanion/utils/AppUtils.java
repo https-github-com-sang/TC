@@ -38,6 +38,7 @@ public class AppUtils {
         return null;
     }
 
+
     public static int getColor(Context context, int id) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return context.getColor(id);
@@ -213,6 +214,9 @@ public class AppUtils {
         return Base64.encodeToString(data, Base64.DEFAULT);
     }
 
+    public static boolean isTC() {
+        return "t_c".equals(BuildConfig.FLAVOR);
+    }
 
 
 }

@@ -12,6 +12,7 @@ import sang.thai.tran.travelcompanion.R
 import sang.thai.tran.travelcompanion.activity.LoginActivity
 import sang.thai.tran.travelcompanion.activity.MainActivity
 import sang.thai.tran.travelcompanion.utils.AppConstant.*
+import sang.thai.tran.travelcompanion.utils.AppUtils.isTC
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
 import sang.thai.tran.travelcompanion.utils.DialogUtils.showAlertDialog
 import sang.thai.tran.travelcompanion.utils.Log
@@ -53,7 +54,6 @@ class DisplayUserInfoFragment : BaseFragment() {
                     tv_register_well?.visibility = View.GONE
                 }
                 SUPPORT_COMPANION_GUIDE -> {
-                    //                        title = getResources().getStringArray(R.array.list_item)[1];
                     title = getString(R.string.label_support_guide)
                     tv_register_well?.visibility = View.GONE
                     tv_register_flight_or_guide?.text = getString(R.string.label_register_guide)
@@ -120,10 +120,20 @@ class DisplayUserInfoFragment : BaseFragment() {
             SUPPORT_COMPANION -> (activity as MainActivity).registerFlight(false)
             SUPPORT_COMPANION_GUIDE -> (activity as MainActivity).registerGuide(false)
             SUPPORT_COMPANION_WELL -> (activity as MainActivity).registerFlight(false)
+
             NEED_SUPPORT_COMPANION -> (activity as MainActivity).registerFlight(true)
-            NEED_SUPPORT_COMPANION_GUIDE -> (activity as MainActivity).registerFlight(true)
+            NEED_SUPPORT_COMPANION_GUIDE -> if (isTC()) (activity as MainActivity).registerGuide(true) else (activity as MainActivity).registerFlight(true)
             NEED_SUPPORT_COMPANION_WELL -> (activity as MainActivity).registerFlight(true)
         }
+
+
+//        SUPPORT_COMPANION -> (activity as MainActivity).registerFlight(false)
+//        SUPPORT_COMPANION_GUIDE -> (activity as MainActivity).registerGuide(false)
+//        SUPPORT_COMPANION_WELL -> (activity as MainActivity).registerFlight(false)
+//
+//        NEED_SUPPORT_COMPANION -> (activity as MainActivity).registerFlight(true)
+//        NEED_SUPPORT_COMPANION_GUIDE -> (activity as MainActivity).registerGuide(true)
+//        NEED_SUPPORT_COMPANION_WELL -> (activity as MainActivity).registerFlight(true)
     }
 
     private fun onClickRegisterGuide() {

@@ -16,7 +16,7 @@ import sang.thai.tran.travelcompanion.model.Response
 import sang.thai.tran.travelcompanion.retrofit.BaseObserver
 import sang.thai.tran.travelcompanion.retrofit.HttpRetrofitClientBase
 import sang.thai.tran.travelcompanion.utils.AppConstant
-import sang.thai.tran.travelcompanion.utils.AppConstant.API_GET_PROFESSIONAL_RECORD
+import sang.thai.tran.travelcompanion.utils.AppConstant.GTN_API_GET_PROFESSIONAL_RECORD
 import sang.thai.tran.travelcompanion.utils.ApplicationSingleton
 import sang.thai.tran.travelcompanion.utils.DialogUtils
 import sang.thai.tran.travelcompanion.interfaces.ResultMultiChoiceDialog as ResultMultiChoiceDialog1
@@ -39,7 +39,7 @@ class RegisterWellCompanionFragment : BaseFragment() {
         }
         controlMedicalCertificationUI(sw_certification.isChecked)
         if (ApplicationSingleton.getInstance().data == null) {
-            getProfessionalRecords(API_GET_PROFESSIONAL_RECORD)
+            getProfessionalRecords(GTN_API_GET_PROFESSIONAL_RECORD)
         } else {
             showMultiChoiceDialog()
         }
